@@ -1,4 +1,9 @@
 //Variables
+
+let cantidadMonedas=0;
+let cantidadTiradas=0;
+let yokaiObtenidos = [];
+
 const monedas = document.querySelector("#monedas");
 const tiradas = document.querySelector("#tiradas");
 
@@ -52,20 +57,43 @@ const yokais = [
     { nombre: "Goldenyan", rango: "S" }
 ];
 
-invocaSingle.addEventListener("click", () =>{
 
+invocaSingle.addEventListener("click", () =>{
+    
+    if(cantidadMonedas>=160){
+        cantidadMonedas-=160;
+        monedas.textContent = cantidadMonedas;
+        
+        cantidadTiradas++;
+        tiradas.textContent = cantidadTiradas;
+    } else {
+        print("No dispones de suficientes monedas");
+    }
 
 });
 
 
 invocaMulti.addEventListener("click", () =>{
+    
+    if(cantidadMonedas>=1280){
 
+    } else {
+        print("No dispones de monedas");
+    }
 
 });
 
 
 const generaYokai = () =>{
 
+    const probabilidad = Math.random() * 100;
+    let rango;
+
+    probabilidad < 35  ? rango = "E":
+    probabilidad < 60 ? rango = "D":
+    probabilidad < 80 ? rango = "C":
+    probabilidad < 92 ? rango = "A":
+    probabilidad < 99 ? rango = "S":
 
 };
 
@@ -78,5 +106,5 @@ const actualizaMedalium = (yokai) =>{
 }
 
 const muestraMedalium = () =>{
-    
+
 }
