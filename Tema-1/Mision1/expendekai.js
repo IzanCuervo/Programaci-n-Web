@@ -92,9 +92,19 @@ const generaYokai = () =>{
     probabilidad < 35  ? rango = "E":
     probabilidad < 60 ? rango = "D":
     probabilidad < 80 ? rango = "C":
-    probabilidad < 92 ? rango = "A":
-    probabilidad < 99 ? rango = "S":
+    probabilidad < 92 ? rango = "B":
+    probabilidad < 99 ? rango = "A":
+                        rango = "S";
+    
+    //Vamos a filtrar los yokai que se correspondan con el rango que haya salido
+    //yokai es una variable auxiliar creada por filter en la que se va guardando un yokai por vuelta
+    const yokaiGenerados = yokais.filter(yokai => yokai.rango === rango);
 
+    //Ahora de la lista de los yokai generados de ese rango escogeremos uno aleatorio
+    //Básicamente multiplicamos un numero random (0-1) por la longitud y redondeamos hacia a bajo y obtendremos el yokai que queremos
+    const posicion = Math.floor(Math.random() * yokaiGenerados.length);
+
+    return yokaiGenerados[posicion];
 };
 
 const darRecompensa = (yokai) =>{
