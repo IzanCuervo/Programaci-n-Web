@@ -1,7 +1,5 @@
 //Variables
 
-// REVISIÓN: quedan números sueltos: el 80 del pity (descomenta la constante de abajo y úsala en
-// generaYokai) y el 160 de darRecompensa (usa COSTE_TIRADA).
 const COSTE_TIRADA = 160;
 const TIRADAS_PITY_S = 80;
 
@@ -69,6 +67,13 @@ const yokais = [
     { nombre: "Goldenyan", rango: "S" }
 ];
 
+const muestraDatos = () =>{
+    monedas.textContent = cantidadMonedas;
+    tiradas.textContent = cantidadTiradas;
+};
+
+//Pintamos el marcador al cargar la página para que coincida con los valores iniciales
+muestraDatos();
 
 invocaSingle.addEventListener("click", () =>{
     
@@ -83,13 +88,20 @@ invocaMulti.addEventListener("click", () =>{
    
 });
 
+// REVISIÓN (pista): sin implementar, y el botón Medalium todavía no tiene listener. Para mostrar/ocultar
+// sin borrar nada, mira qué hace classList.toggle y combínalo con una clase que definas tú en el CSS.
+botonMedalium.addEventListener("click", () =>{
+    medalium.classList.toggle("oculto");
+});
+
 const realizaInvocacion = (numInvocaciones) => {
     
     const costeTotal = numInvocaciones*COSTE_TIRADA;
-    let resultadoTexto="";
 
     if(cantidadMonedas>=costeTotal){
         cantidadMonedas-=costeTotal;
+        error.textContent="";
+        resultado.textContent="";
             for(let i=0; i<numInvocaciones; i++){
                 cantidadTiradas++;
             
@@ -98,15 +110,14 @@ const realizaInvocacion = (numInvocaciones) => {
                 const yokaiObtenido = generaYokai(garantiaA);
 
                 darRecompensa(yokaiObtenido);
-                resultadoTexto += `${i + 1}. Has obtenido a ${yokaiObtenido.nombre}!! - Rango ${yokaiObtenido.rango}\n`;
+                //Creamos un <li> por cada tirada y lo añadimos a la lista de resultados
+                const itemResultado = document.createElement("li");
+                itemResultado.textContent = `Has obtenido a ${yokaiObtenido.nombre}!! - Rango ${yokaiObtenido.rango}`;
+                resultado.append(itemResultado);
             
             }
-        
-            monedas.textContent = cantidadMonedas;
-            tiradas.textContent = cantidadTiradas;
-            // REVISIÓN (bug): los "\n" no hacen salto de línea dentro de un <p>, así que las tiradas salen seguidas.
-            // Cambia #resultado por un <ol>/<ul>, vacíalo al empezar y crea un <li> por tirada en el bucle.
-            resultado.textContent = resultadoTexto;
+            
+            muestraDatos();
     } else {
         error.textContent = "No dispones de suficientes monedas";
     
@@ -121,9 +132,11 @@ const generaYokai = (garantiaA) =>{
     let rango;
 
    
-    // Para la garantía A, piensa también: si esa tirada ya iba a ser S, ¿quieres bajarla a A?
-    if(pity === 80){
+    // Si nuestro pity es superior o igual a 80 entonces se nos garantiza un rango S
+    //El menos 1 es porque nuestro pity empiza a contar desde 0 
+    if(pity >= TIRADAS_PITY_S-1){
         rango = "S";
+    //Si la garantiaA es true entonces aseguramos rango A
     } else if (garantiaA){
         rango = "A";
     } else {
@@ -159,6 +172,7 @@ const darRecompensa = (yokai) =>{
        cantidadMonedas += COSTE_TIRADA;
     } else {
         yokaiObtenidos.push(yokai);
+        actualizaMedalium(yokai);
     }
     // REVISIÓN (pista): cuando hagas el Medalium, este else es el sitio donde sabes que un yokai es nuevo.
     // Y si quieres avisar de "repetido" en el mensaje, ¿cómo podría enterarse el listener? (piensa en return).
@@ -168,14 +182,19 @@ const darRecompensa = (yokai) =>{
 // document.createElement, textContent, classList.add y append (o appendChild). Ponerle una clase según
 // el rango te servirá luego para darle estilo en tu CSS.
 const actualizaMedalium = (yokai) =>{
+    //Como la letra final de cada sección es lo mismo que el rango lees directamente por el rango del yokai
+    const seccionRango = document.querySelector(`medalium-${yokai.rango}`);
+    
+    //Creamos la medalla del yokai
+    const medalla = document.createElement("div");
+    medalla.textContent = yokai.nombre;
+    //con classList.add añado las clases para el posterior CSS
+    medalla.classList.add("medalla", `rango-${yokai.rango}`);
+    //Meto la medalla a su respectiva sección
+    seccionRango.append(medalla);
+};
 
-}
 
-// REVISIÓN (pista): sin implementar, y el botón Medalium todavía no tiene listener. Para mostrar/ocultar
-// sin borrar nada, mira qué hace classList.toggle y combínalo con una clase que definas tú en el CSS.
-const muestraMedalium = () =>{
-
-}
 
 // REVISIÓN (pista, BONUS + eventos de teclado): modo oscuro con una tecla secreta. Investiga el evento
 // "keydown" (¿sobre qué elemento lo escucharías para que funcione en toda la página?) y la propiedad
