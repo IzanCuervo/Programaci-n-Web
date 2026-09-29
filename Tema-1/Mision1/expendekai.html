@@ -4,7 +4,7 @@
     <head>
         <meta charset = "utf-8">
         <!-- REVISIÓN: añade <meta name="viewport" content="width=device-width, initial-scale=1"> para que se vea bien en el móvil. -->
-        <!-- REVISIÓN: cuando crees tu CSS, enlázalo aquí: <link rel="stylesheet" href="expendekai.css"> -->
+        <link href="expendekai.css" rel="stylesheet" type="text/css">
         <!-- REVISIÓN (línea de abajo): type="text/javascript" sobra en HTML5, es el valor por defecto. Además, las dos
              líneas siguientes están sangradas con tabuladores y el resto del archivo con espacios: usa siempre lo mismo. -->
 		<script type= "text/javascript" src="expendekai.js" defer></script>
@@ -17,8 +17,7 @@
             <h1>Expendekai</h1>
             <p>Monedas: <span id="monedas">0</span></p>
             <p>Tiradas: <span id="tiradas">0</span></p>
-            <!-- REVISIÓN (pista): falta la forma de conseguir monedas. Decide cómo (un botón, una tecla, con el
-                 paso del tiempo...) y qué elemento necesitas aquí para que el JS pueda escucharlo. -->
+            <button id="generaMonedas">Consigue Monedas</button>
         </header>
         <main>
             <section>
@@ -30,8 +29,7 @@
 
             <section>
                 <button id="medalium">Medalium</button>
-                <!-- REVISIÓN (pista): piensa si el Medalium debe verse al cargar la página o solo al pulsar el botón. -->
-                <div id="contenidoMedalium">
+                <div id="contenidoMedalium" class="oculto">
                     <section id="medalium-E">
                         <h3>Rango E</h3>
                     </section>

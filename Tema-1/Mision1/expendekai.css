@@ -1,0 +1,14 @@
+.oculto {
+    display: none;
+}
+
+/* Fondo principal: la Expendekai de Floridablanca ocupando toda la pantalla */
+body {
+    margin: 0;                                   /* quita el margen blanco que el navegador pone por defecto */
+    min-height: 100vh;                           /* el body ocupa como mínimo todo el alto de la ventana */
+    background-color: #2f3b1f;                   /* color de reserva mientras carga la imagen */
+    background-image: url("videos/fondo.jpg");
+    background-size: cover;                      /* la imagen cubre toda la pantalla sin deformarse */
+    background-position: center;                 /* si hay que recortarla, se recorta por los bordes, no por la máquina */
+    background-attachment: fixed;                /* el fondo se queda quieto aunque hagas scroll */
+}

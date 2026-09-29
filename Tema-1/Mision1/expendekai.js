@@ -14,57 +14,57 @@ const tiradas = document.querySelector("#tiradas");
 const invocaSingle = document.querySelector("#invocacion1");
 const invocaMulti = document.querySelector("#invocacion8");
 const botonMedalium = document.querySelector("#medalium");
+const generaMonedas = document.querySelector("#generaMonedas");
 
 const medalium = document.querySelector("#contenidoMedalium");
 
 const resultado = document.querySelector("#resultado");
 const error = document.querySelector("#error");
-// REVISIÓN: botonMedalium y medalium se declaran pero todavía no se usan (ver muestraMedalium al final).
 
-// REVISIÓN (pista): si quieres usar los vídeos de videos/, cada yokai tiene que "saber" cuál es el suyo.
-// ¿Qué podrías añadir a cada objeto del array? Luego busca cómo crear un <video> desde JS y darle su src.
+// REVISIÓN: cada yokai ya tiene la ruta de su vídeo en "video". Falta crear el <video> al mostrar el
+// resultado de la tirada.
 const yokais = [
     // Rango E
-    { nombre: "Komemo", rango: "E" },
-    { nombre: "Tentelento", rango: "E" },
-    { nombre: "Alcaldero", rango: "E" },
-    { nombre: "Illoo", rango: "E" },
-    { nombre: "Yopaso", rango: "E" },
+    { nombre: "Komemo", rango: "E", video: "videos/komemo.webm" },
+    { nombre: "Tantroni", rango: "E", video: "videos/tantroni.webm" },
+    { nombre: "Alcaldero", rango: "E", video: "videos/alcaldero.webm" },
+    { nombre: "Alga", rango: "E", video: "videos/alga.webm" },
+    { nombre: "Yopaso", rango: "E", video: "videos/yopaso.webm" },
 
     // Rango D
-    { nombre: /*sustituir*/"Komasan", rango: "D" },
-    { nombre: "Cupistolo", rango: "D" },
-    { nombre: "Cotilleja", rango: "D" },
-    { nombre: "Jibanyan", rango: "D" },
-    { nombre: "Komajiro", rango: "D" },
+    { nombre: "LaFalota", rango: "D", video: "videos/laFalota.webm" },
+    { nombre: "Cupistolo", rango: "D", video: "videos/cupistolo.webm" },
+    { nombre: "Cotilleja", rango: "D", video: "videos/cotilleja.webm" },
+    { nombre: "Jibanyan", rango: "D", video: "videos/jibanyan.webm" },
+    { nombre: "Komajiro", rango: "D", video: "videos/komajiro.webm" },
 
     // Rango C
-    { nombre: "Iluho", rango: "C" },
-    { nombre: "Telespejo", rango: "C" },
-    { nombre: "Cadin", rango: "C" }, /*falta*/
-    { nombre: "Walkappa", rango: "C" },/*falta*/
-    { nombre: "Hidabat", rango: "C" },/*falta*/
+    { nombre: "Iluho", rango: "C", video: "videos/iluho.webm" },
+    { nombre: "Telespejo", rango: "C", video: "videos/telespejo.webm" },
+    { nombre: "Cuesco", rango: "C", video: "videos/cuesco.webm" }, 
+    { nombre: "Puffipatitas", rango: "C", video: "videos/puffipatitas.webm" },
+    { nombre: "Ratelle", rango: "C", video: "videos/ratelle.webm" },
 
     // Rango B
-    { nombre: "Darumacho", rango: "B" },
-    { nombre: "Baku", rango: "B" }, /*falta*/
-    { nombre: "Frostina", rango: "B" }, /*falta*/
-    { nombre: "Shmoopie", rango: "B" }, /*falta*/
-    { nombre: "Castelius III", rango: "B" }, /*falta*/
+    { nombre: "Darumacho", rango: "B", video: "videos/darumacho.webm" },
+    { nombre: "Rhinoggin", rango: "B", video: "videos/rhinoggin.webm" },
+    { nombre: "Espinyan", rango: "B", video: "videos/espinyan.webm" },
+    { nombre: "Agon", rango: "B", video: "videos/agon.webm" },
+    { nombre: "Habilgarra", rango: "B", video: "videos/habilgarra.webm" },
 
     // Rango A
-    { nombre: "Pandanoko", rango: "A" },
-    { nombre: "", rango: "A" },
-    { nombre: "", rango: "A" },
-    { nombre: "Blazion", rango: "A" },
-    { nombre: "", rango: "A" },
+    { nombre: "Pandanoko", rango: "A", video: "videos/pandaNoko.webm" },
+    { nombre: "Reversa", rango: "A", video: "videos/reversa.webm" },
+    { nombre: "Robonyan", rango: "A", video: "videos/robonyan.webm" },
+    { nombre: "Negasus", rango: "A", video: "videos/negasus.webm" },
+    { nombre: "Timidemonio", rango: "A", video: "videos/timidemonio.webm" },
 
     // Rango S
-    { nombre: "Kyubi", rango: "S" },
-    { nombre: "Venocto Oscuro", rango: "S" },
-    { nombre: "Tengu", rango: "S" },
-    { nombre: "Snartle", rango: "S" },
-    { nombre: "Goldenyan", rango: "S" }
+    { nombre: "Kyubi", rango: "S", video: "videos/kyubi.webm" },
+    { nombre: "Venocto Oscuro", rango: "S", video: "videos/venoctoOscuro.webm" },
+    { nombre: "Tengu", rango: "S", video: "videos/tengu.webm" },
+    { nombre: "Komasura", rango: "S", video: "videos/komasura.webm" },
+    { nombre: "Papa Rayo", rango: "S", video: "videos/papaRayo.webm" }
 ];
 
 const muestraDatos = () =>{
@@ -88,9 +88,14 @@ invocaMulti.addEventListener("click", () =>{
    
 });
 
-// REVISIÓN (pista): sin implementar, y el botón Medalium todavía no tiene listener. Para mostrar/ocultar
-// sin borrar nada, mira qué hace classList.toggle y combínalo con una clase que definas tú en el CSS.
+generaMonedas.addEventListener("click", () =>{
+    cantidadMonedas += COSTE_TIRADA*4;
+    error.textContent="";
+    muestraDatos();
+});
+
 botonMedalium.addEventListener("click", () =>{
+    //Con toggle alternamos la etiqueta oculto para que el CSS nos permita mostrar el Medalium
     medalium.classList.toggle("oculto");
 });
 
@@ -174,16 +179,13 @@ const darRecompensa = (yokai) =>{
         yokaiObtenidos.push(yokai);
         actualizaMedalium(yokai);
     }
-    // REVISIÓN (pista): cuando hagas el Medalium, este else es el sitio donde sabes que un yokai es nuevo.
-    // Y si quieres avisar de "repetido" en el mensaje, ¿cómo podría enterarse el listener? (piensa en return).
+    // REVISIÓN (pista, opcional): si quieres avisar de "repetido" en el mensaje de la tirada, ¿cómo podría
+    // enterarse realizaInvocacion de que el yokai era repetido? (piensa en return).
 };
 
-// REVISIÓN (pista): sin implementar. Cada yokai nuevo debería aparecer en #contenidoMedalium. Repasa
-// document.createElement, textContent, classList.add y append (o appendChild). Ponerle una clase según
-// el rango te servirá luego para darle estilo en tu CSS.
 const actualizaMedalium = (yokai) =>{
     //Como la letra final de cada sección es lo mismo que el rango lees directamente por el rango del yokai
-    const seccionRango = document.querySelector(`medalium-${yokai.rango}`);
+    const seccionRango = document.querySelector(`#medalium-${yokai.rango}`);
     
     //Creamos la medalla del yokai
     const medalla = document.createElement("div");
