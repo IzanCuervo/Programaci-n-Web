@@ -17,18 +17,21 @@
             <h1>Expendekai</h1>
             <p>Monedas: <span id="monedas">0</span></p>
             <p>Tiradas: <span id="tiradas">0</span></p>
-            <button id="generaMonedas">Consigue Monedas</button>
+            <button id="generaMonedas" class="botones">Consigue Monedas</button>
         </header>
         <main>
+            <video id="tirada" class="oculto" src="videos/tirada.mp4"></video>
             <section>
-                <button id="invocacion1">Invocación x1</button>
-                <button id="invocacion8">Invocación x8</button>
+                <div class="zonaInvocacion">
+                    <button id="invocacion1" class="botones">Invocación x1</button>
+                    <button id="invocacion8" class="botones">Invocación x8</button>
+                </div>
                 <ol id="resultado"></ol>
                 <p id="error"></p>
             </section>
 
             <section>
-                <button id="medalium">Medalium</button>
+                <button id="medalium" class="botones">Medalium</button>
                 <div id="contenidoMedalium" class="oculto">
                     <section id="medalium-E">
                         <h3>Rango E</h3>

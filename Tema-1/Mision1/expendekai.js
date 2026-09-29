@@ -19,6 +19,7 @@ const generaMonedas = document.querySelector("#generaMonedas");
 const medalium = document.querySelector("#contenidoMedalium");
 
 const resultado = document.querySelector("#resultado");
+const video = document.querySelector("#tirada");
 const error = document.querySelector("#error");
 
 // REVISIÓN: cada yokai ya tiene la ruta de su vídeo en "video". Falta crear el <video> al mostrar el
@@ -119,9 +120,9 @@ const realizaInvocacion = (numInvocaciones) => {
                 const itemResultado = document.createElement("li");
                 itemResultado.textContent = `Has obtenido a ${yokaiObtenido.nombre}!! - Rango ${yokaiObtenido.rango}`;
                 resultado.append(itemResultado);
-            
+
             }
-            
+
             muestraDatos();
     } else {
         error.textContent = "No dispones de suficientes monedas";

@@ -1,9 +1,19 @@
+/* Fuente Baloo 2 */
+@font-face {
+    font-family: "Baloo 2";
+    src: url("fuentes/baloo2-latin.woff2") format("woff2");
+    font-weight: 400 800;
+    font-style: normal;
+    font-display: swap;          /* mientras carga, muestra la fuente de reserva en vez de texto invisible */
+}
+
 .oculto {
     display: none;
 }
 
 /* Fondo principal: la Expendekai de Floridablanca ocupando toda la pantalla */
 body {
+    font-family: "Baloo 2", sans-serif;          /* fuente de toda la página (sans-serif si Google Fonts no carga) */
     margin: 0;                                   /* quita el margen blanco que el navegador pone por defecto */
     min-height: 100vh;                           /* el body ocupa como mínimo todo el alto de la ventana */
     background-color: #2f3b1f;                   /* color de reserva mientras carga la imagen */
@@ -11,4 +21,50 @@ body {
     background-size: cover;                      /* la imagen cubre toda la pantalla sin deformarse */
     background-position: center;                 /* si hay que recortarla, se recorta por los bordes, no por la máquina */
     background-attachment: fixed;                /* el fondo se queda quieto aunque hagas scroll */
+}
+
+/* Botones al estilo de los menús de Yo-kai Watch */
+.botones {
+    font-family: inherit;                                 /* los <button> no heredan la fuente solos: así cogen Baloo 2 del body */
+    font-size: 18px;
+    font-weight: 800;
+    color: #5a3200;                                       /* texto marrón oscuro */
+    background: linear-gradient(#fffbe6, #ffd24d);        /* degradado de crema (arriba) a amarillo (abajo) */
+    border: 3px solid #5a3200;                            /* borde grueso marrón, como en el juego */
+    border-radius: 999px;                                 /* esquinas totalmente redondas: forma de píldora */
+    padding: 10px 26px;
+    box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.9),   /* brillo blanco en el borde de arriba */
+                0 5px 0 #5a3200;                          /* sombra sólida debajo: efecto de botón "físico" */
+    cursor: pointer;                                      /* la manita al pasar el ratón */
+    transition: transform 0.08s, box-shadow 0.08s, filter 0.15s;
+}
+
+/* Al pasar el ratón por encima, se ilumina un poco */
+.botones:hover {
+    filter: brightness(1.08);
+    color: purple;
+    transform: scale(1.2); 
+}
+
+#invocacion1 {
+    position: fixed;
+    top: 70%;                                        /* un poco por debajo del centro: a la altura del cuerpo de la máquina */
+    right: 55%;         
+    display: flex;                                   /* pone los dos botones en fila */
+    align-items: center;                            
+}
+
+#invocacion8 {
+    position: fixed;
+    top: 70%;                                        /* un poco por debajo del centro: a la altura del cuerpo de la máquina */
+    left: 55%;
+    display: flex;                                   /* pone los dos botones en fila */
+    align-items: center;
+}
+
+/* Al hacer clic, el botón "se hunde": baja y la sombra se hace pequeña */
+.botones:active {
+    transform: translateY(4px);
+    box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.9),
+                0 1px 0 #5a3200;
 }
