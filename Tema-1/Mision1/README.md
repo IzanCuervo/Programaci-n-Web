@@ -71,7 +71,7 @@ Tema-1/Mision1/
 - Fuente **Baloo 2** (© The Baloo 2 Project Authors), con licencia SIL Open Font License 1.1
   (ver `fuentes/OFL.txt`).
 
-## Declaración de uso de IA
+## Uso de IA
 
 He usado **Claude**, más concretamente el modelo OPUS 5.5 como asistente durante el proyecto.
 
@@ -92,3 +92,37 @@ Lo he usado principalmente para:
 **Lo que he hecho yo:** la idea del juego, la lógica de las invocaciones (`realizaInvocacion`,
 `generaYokai`, `darRecompensa`), las garantías, el Medalium, la reestructuración y correcciones del código, la estructura del HTML, y grabar y
 quitar el fondo a todas las animaciones.
+
+## Autopsia
+
+### Qué salió bien
+Lo que más ha salido bien es haber podido plasmar la idea que tenía en la cabeza de una forma bastante
+eficiente. Estoy contento, por ejemplo, de que las invocaciones x1 y x8 usen la misma función
+(`realizaInvocacion`), de que las garantías de rango A y S funcionen como en el juego y de que el
+Medalium vaya guardando cada yokai en su rango.
+
+### Qué me costó
+Lo que más guerra me ha dado ha sido la parte visual de los personajes. No encontraba sus animaciones
+por ningún sitio, así que las he grabado yo y les he quitado el fondo a mano para que el resultado fuese
+mucho más bonito. También me costó el CSS, que no lo recordaba bien y en el que la IA me ha ayudado
+bastante.
+
+En el código, algunos fallos me tuvieron un buen rato: la garantía de rango S llegaba una tirada tarde
+hasta que entendí por qué hacía falta el `- 1` en el contador, y la caja de resultados no se abría porque
+tenía dos variables cruzadas apuntando al elemento equivocado.
+
+### Qué he aprendido
+He entendido muchas cosas de JavaScript que antes no conocía. No sabía que se podían crear elementos de
+HTML desde JavaScript con `createElement`, ni manejar las clases y el contenido con `classList` y
+`textContent`. También he descubierto funciones ya hechas muy útiles, como `some`, que compara sin
+tener que escribir un bucle, o `filter`, que guarda en un array solo lo que te interesa. He usado por
+primera vez los ternarios y listeners nuevos como `ended`, que ejecuta algo justo cuando termina un
+vídeo: en mi caso, ocultar la animación de la tirada y mostrar la caja de resultados. Todo esto lo he
+logrado entender con la teoría de los PDF y la ayuda de la IA.
+
+En general, lo que más me ha sorprendido es empezar a entenderme con JavaScript, un lenguaje que hasta
+ahora apenas había usado.
+
+### Qué mejoraría
+Sobre todo el estilo de la página. Es la parte del proceso que más me gusta, pero por falta de tiempo y
+por otros trabajos no he podido dedicarle lo que me hubiera gustado.
