@@ -62,9 +62,132 @@ body {
     align-items: center;
 }
 
+/* Monedas y tiradas: arriba a la izquierda*/
+header {
+    padding: 12px 20px;
+}
+
+header p {
+    margin: 0 0 4px; /* quita el hueco grande que los <p> traen por defecto */
+    font-size: 18px;
+}
+
+/* Título "Expendekai": arriba, en el centro */
+header h1 {
+    position: fixed;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);   /* lo mueve atrás la mitad de su ancho: queda centrado */
+    margin: 0;
+}
+
+/* Consigue Monedas: arriba a la derecha */
+#generaMonedas {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+}
+
+/* Medalium: abajo a la derecha */
+#medalium {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+}
+
+#tirada {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 100; /*con z-indez al 100 sobrepongo el video por encima de los botones*/
+}
+
+/* Estilo común de las cajas (Medalium y resultado de la invocación), a juego con los botones.
+   Sin "display": así la clase .oculto puede seguir escondiéndolas. */
+.caja {
+    padding: 16px 24px;                               /* espacio entre el borde y lo de dentro */
+    position: fixed;                                  /* se coloca respecto a la ventana */
+    top: 50%;                                         /* su esquina de arriba, a media altura... */
+    left: 50%;                                        /* ...y su esquina izquierda, a media anchura */
+    transform: translate(-50%, -50%);                 /* la movemos atrás la mitad de su tamaño: queda centrada */
+    z-index: 50;                                      /* por encima de los botones, por debajo del vídeo (100) */
+    max-height: 80vh;                                 /* como mucho el 80 % del alto de la pantalla... */
+    overflow-y: auto;                                 /* ...y si no cabe, scroll dentro de la caja */
+    color: #5a3200;                                   /* texto marrón, como el de los botones */
+    background: linear-gradient(#fffbe6, #ffd24d);    /* degradado crema → amarillo, igual que los botones */
+    border: 4px solid #5a3200;                        /* borde marrón grueso */
+    border-radius: 20px;                              /* esquinas redondeadas */
+    box-shadow: 0 6px 0 #5a3200,                      /* sombra sólida debajo */
+                0 0 0 100vmax rgba(0, 0, 0, 0.6);     /* "sombra" gigante que oscurece el resto de la pantalla */
+}
+
+/* Lo propio de la caja del resultado: se ajusta a lo que tiene dentro, para que mande el vídeo */
+#cajaResultado {
+    width: max-content;                               /* tan ancha como su contenido (fit-content no sirve aquí: con
+                                                         left: 50% cree que solo tiene media pantalla y la encoge) */
+    max-width: 90vw;                                  /* sin salirse de la pantalla */
+    padding: 10px 16px;                               /* menos relleno que el Medalium: la caja "abraza" los vídeos */
+    text-align: center;
+}
+
+/* Lo propio de la caja del Medalium */
+#contenidoMedalium {
+    width: min(600px, 90vw);                          /* 600 px como mucho; en pantallas pequeñas, el 90 % del ancho */
+}
+
 /* Al hacer clic, el botón "se hunde": baja y la sombra se hace pequeña */
 .botones:active {
     transform: translateY(4px);
     box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.9),
                 0 1px 0 #5a3200;
+}
+
+/*Estilos de la caja de Resultados y de sus elementos creados*/
+/* Lista del resultado: sin números y con los yokai en fila */
+#resultado {
+    margin: 0 0 10px;
+    padding: 0;
+    max-width: 784px;              /* caben 4 yokai por fila (4 × 190 px + 3 huecos de 8 px): la x8 sale en 4 + 4 */
+    display: flex;                 /* los yokai en fila... */
+    flex-wrap: wrap;               /* ...y si no caben (x8), bajan a otra fila */
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Cada yokai: vídeo arriba y frase debajo, centrados */
+#resultado li {
+    width: 190px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* El vídeo es lo protagonista: ocupa todo el ancho del hueco y es cuadrado */
+#resultado video {
+    width: 100%;
+    height: 190px;
+    object-fit: contain;           /* el vídeo entero, sin recortar */
+}
+
+/* La frase, pequeña y pegada al vídeo */
+#resultado p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/* Invocación x1: si solo hay un yokai en la lista, se ve en grande */
+#resultado li:only-child {
+    width: 340px;
+}
+
+#resultado li:only-child video {
+    height: 340px;
+}
+
+#resultado li:only-child p {
+    font-size: 18px;
 }

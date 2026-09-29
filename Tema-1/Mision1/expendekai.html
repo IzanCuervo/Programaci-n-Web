@@ -3,10 +3,7 @@
 <html lang="es">
     <head>
         <meta charset = "utf-8">
-        <!-- REVISIÓN: añade <meta name="viewport" content="width=device-width, initial-scale=1"> para que se vea bien en el móvil. -->
         <link href="expendekai.css" rel="stylesheet" type="text/css">
-        <!-- REVISIÓN (línea de abajo): type="text/javascript" sobra en HTML5, es el valor por defecto. Además, las dos
-             líneas siguientes están sangradas con tabuladores y el resto del archivo con espacios: usa siempre lo mismo. -->
 		<script type= "text/javascript" src="expendekai.js" defer></script>
 		<title>Expendekai</title>
     </head>
@@ -26,13 +23,17 @@
                     <button id="invocacion1" class="botones">Invocación x1</button>
                     <button id="invocacion8" class="botones">Invocación x8</button>
                 </div>
-                <ol id="resultado"></ol>
+                <!-- Tiene tanto la clase caja como la clase oculto-->
+                <div id="cajaResultado" class="caja oculto">
+                    <ol id="resultado"></ol>
+                    <button id="cerrarResultado" class="botones">Aceptar</button>
+                </div>
                 <p id="error"></p>
             </section>
 
             <section>
                 <button id="medalium" class="botones">Medalium</button>
-                <div id="contenidoMedalium" class="oculto">
+                <div id="contenidoMedalium" class="caja oculto">
                     <section id="medalium-E">
                         <h3>Rango E</h3>
                     </section>
@@ -51,7 +52,9 @@
                     <section id="medalium-S">
                         <h3>Rango S</h3>
                     </section>
+                    <button id="cerrarMedalium" class="botones">Aceptar</button>
                 </div>
+               
             </section>
 
         </main>

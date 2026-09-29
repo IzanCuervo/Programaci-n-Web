@@ -2,6 +2,8 @@
 
 const COSTE_TIRADA = 160;
 const TIRADAS_PITY_S = 80;
+const TIRADAS_MULTI = 8;                        //tiradas de la invocación múltiple (la última garantiza rango A)
+const MONEDAS_POR_CLIC = COSTE_TIRADA * 4;      //monedas que da el botón "Consigue Monedas"
 
 let cantidadMonedas=COSTE_TIRADA;
 let cantidadTiradas=0;
@@ -17,13 +19,15 @@ const botonMedalium = document.querySelector("#medalium");
 const generaMonedas = document.querySelector("#generaMonedas");
 
 const medalium = document.querySelector("#contenidoMedalium");
+const cerrarResultado = document.querySelector("#cerrarResultado");
+const cerrarMedalium = document.querySelector("#cerrarMedalium");
 
+
+const cajaResultado = document.querySelector("#cajaResultado");
 const resultado = document.querySelector("#resultado");
 const video = document.querySelector("#tirada");
 const error = document.querySelector("#error");
 
-// REVISIÓN: cada yokai ya tiene la ruta de su vídeo en "video". Falta crear el <video> al mostrar el
-// resultado de la tirada.
 const yokais = [
     // Rango E
     { nombre: "Komemo", rango: "E", video: "videos/komemo.webm" },
@@ -85,19 +89,34 @@ invocaSingle.addEventListener("click", () =>{
 
 invocaMulti.addEventListener("click", () =>{
     
-    realizaInvocacion(8);
+    realizaInvocacion(TIRADAS_MULTI);
    
 });
 
 generaMonedas.addEventListener("click", () =>{
-    cantidadMonedas += COSTE_TIRADA*4;
+    cantidadMonedas += MONEDAS_POR_CLIC;
     error.textContent="";
     muestraDatos();
 });
 
-botonMedalium.addEventListener("click", () =>{
-    //Con toggle alternamos la etiqueta oculto para que el CSS nos permita mostrar el Medalium
-    medalium.classList.toggle("oculto");
+cerrarResultado.addEventListener("click", () =>{
+    cajaResultado.classList.add("oculto");
+    resultado.textContent = "";
+});
+
+//Cuando el video termine se le volverá a asignar la clase oculto para ocultarlo
+video.addEventListener("ended", () =>{
+    video.classList.add("oculto");
+    //Desocultamos la caja que tiene el resultado
+    cajaResultado.classList.remove("oculto");
+});
+
+botonMedalium.addEventListener("click", () =>{    
+    medalium.classList.remove("oculto");
+});
+
+cerrarMedalium.addEventListener("click", () =>{
+    medalium.classList.add("oculto");
 });
 
 const realizaInvocacion = (numInvocaciones) => {
@@ -106,21 +125,35 @@ const realizaInvocacion = (numInvocaciones) => {
 
     if(cantidadMonedas>=costeTotal){
         cantidadMonedas-=costeTotal;
+        //Cada vez que invoco reproduzco el video
+        video.classList.remove("oculto");
+        video.currentTime=0;
+        video.play();
         error.textContent="";
         resultado.textContent="";
             for(let i=0; i<numInvocaciones; i++){
                 cantidadTiradas++;
             
-                //Esta línea ya nos devuelve un booleano porque solo va comparando que la tirada sea la 8 
-                const garantiaA = i === 7;
+                //Esta línea ya nos devuelve un booleano porque solo va comparando que sea la última tirada
+                const garantiaA = i === TIRADAS_MULTI - 1;
                 const yokaiObtenido = generaYokai(garantiaA);
 
                 darRecompensa(yokaiObtenido);
                 //Creamos un <li> por cada tirada y lo añadimos a la lista de resultados
                 const itemResultado = document.createElement("li");
-                itemResultado.textContent = `Has obtenido a ${yokaiObtenido.nombre}!! - Rango ${yokaiObtenido.rango}`;
+                
+                //Craremos los parametros que recibirá cada miembro de la lista que son el video y el texto de recompensa
+                const videoYokai = document.createElement("video");
+                videoYokai.src = yokaiObtenido.video; 
+                videoYokai.autoplay = true;            
+                videoYokai.loop = true;                 
+                videoYokai.muted = true;                
+                
+                const fraseRecompensa = document.createElement("p");
+                fraseRecompensa.textContent = `Has obtenido a ${yokaiObtenido.nombre}!! - Rango ${yokaiObtenido.rango}`;
+                
+                itemResultado.append(videoYokai, fraseRecompensa);
                 resultado.append(itemResultado);
-
             }
 
             muestraDatos();
@@ -180,8 +213,6 @@ const darRecompensa = (yokai) =>{
         yokaiObtenidos.push(yokai);
         actualizaMedalium(yokai);
     }
-    // REVISIÓN (pista, opcional): si quieres avisar de "repetido" en el mensaje de la tirada, ¿cómo podría
-    // enterarse realizaInvocacion de que el yokai era repetido? (piensa en return).
 };
 
 const actualizaMedalium = (yokai) =>{
@@ -199,6 +230,3 @@ const actualizaMedalium = (yokai) =>{
 
 
 
-// REVISIÓN (pista, BONUS + eventos de teclado): modo oscuro con una tecla secreta. Investiga el evento
-// "keydown" (¿sobre qué elemento lo escucharías para que funcione en toda la página?) y la propiedad
-// key del evento. Para los colores, igual que con el Medalium: una clase que alternas y defines en tu CSS.
