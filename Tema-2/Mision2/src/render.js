@@ -33,6 +33,7 @@ export function pintarOpcionesRaza(recuento, desplegable){
 
 // Con map crearemos una tarjeta por personaje y las metemos todas en el contenedor
 export function pintarPersonajes(personajes, contenedor) {
+    contenedor.textContent = "";
     const tarjetas = personajes.map((personaje) => crearTarjeta(personaje));
     contenedor.append(...tarjetas);
 }

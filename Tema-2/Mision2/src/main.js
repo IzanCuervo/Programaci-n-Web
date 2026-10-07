@@ -1,10 +1,11 @@
 import { obtenerPersonajes } from "./api.js";
-import { limpiarPersonajes, contarPorRaza } from "./datos.js";
+import { limpiarPersonajes, contarPorRaza, filtraRaza } from "./datos.js";
 import { pintarPersonajes, pintarOpcionesRaza } from "./render.js";
 
-const listaPersonajes = document.querySelector("#listaPersonajes");
+const contenedorPersonajes = document.querySelector("#contenedorPersonajes");
 const mensajeCarga = document.querySelector("#carga");
-const filtroRaza = document.querySelector("#filtroRaza");
+const desplegableRaza = document.querySelector("#desplegableRaza");
+let todosLosPersonajes = []; //variable global para guardar los personajes ya cargados
 
 // Prueba temporal: comprobar que llegan los personajes
 async function cargarPersonajes() {
@@ -13,11 +14,12 @@ async function cargarPersonajes() {
     try{   
         const personajes = await obtenerPersonajes();
         const limpios = limpiarPersonajes(personajes);
-        pintarPersonajes(limpios, listaPersonajes);
+        todosLosPersonajes=limpios;
+        pintarPersonajes(limpios, contenedorPersonajes);
         
         //Primero contamos las razas de los personajes pasados a limpio y luego pintamos las distintas opciones
         const recuento = contarPorRaza(limpios);
-        pintarOpcionesRaza(recuento, filtroRaza);
+        pintarOpcionesRaza(recuento, desplegableRaza);
         mensajeCarga.textContent="";
     }catch (error){
         mensajeCarga.textContent = "No se ha podido cargar el contenido";
@@ -26,3 +28,15 @@ async function cargarPersonajes() {
 }
 
 cargarPersonajes();
+
+//Añadimos un listener con el evento "change" para que cada que el usuario cambie de opcion el valor del desplegable se actualice
+desplegableRaza.addEventListener("change", () => {
+    const razaElegida = desplegableRaza.ariaValueMax;
+
+    if(razaElegida === "Todas"){
+        pintarPersonajes(todosLosPersonajes, contenedorPersonajes);   
+    } else {
+        const filtrados = filtraRaza(todosLosPersonajes, razaElegida);
+        pintarPersonajes(filtrados, contenedorPersonajes);
+    }
+});
