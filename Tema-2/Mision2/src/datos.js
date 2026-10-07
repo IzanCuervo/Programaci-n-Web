@@ -22,7 +22,7 @@ export function limpiarDetalles(personaje){
                 nombre: personaje.originPlanet.name,
                 imagen: personaje.originPlanet.image,
                 descripcion: personaje.originPlanet.description,
-                estado: personaje.originPlanet.isDestroyed,
+                destruido: personaje.originPlanet.isDestroyed,
             },
 
             //Transformaciones es una lista por lo tanto auí si necesitamos recorrer las del personaje
