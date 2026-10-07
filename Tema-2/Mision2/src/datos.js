@@ -37,7 +37,27 @@ export function limpiarDetalles(personaje){
         };
 }
 
+//Desplegable de Razas
+
 export function filtraRaza(personajes, raza){
-    const razaSelec = personajes.filter(personaje => personaje.raza === raza)
-    return razaSelec
+    const personajesRaza = personajes.filter(personaje => personaje.raza === raza)
+    return personajesRaza;
+}
+
+// Cuenta cuántos personajes hay de cada raza: { Saiyan: 10, Android: 9, ... }
+export function contarPorRaza(personajes){
+    // recuento es la "pizarra": empieza vacía ({}) y en cada vuelta se apunta la raza de un personaje
+    const razas = personajes.reduce((recuento, personaje) => {
+        const raza = personaje.raza;
+        //Con reduce automatizamos el recorrido, simplemente si la raza aun no esta definida, se crea y se iguala a 1, sino simplemente se suma un personaje más
+        if (recuento[raza] === undefined) {
+            recuento[raza] = 1;                  // primera vez que sale esta raza: la apuntamos con 1
+        } else {
+            recuento[raza] = recuento[raza] + 1; // ya estaba apuntada: le sumamos 1
+        }
+
+        return recuento;                         // pasamos la pizarra a la siguiente vuelta
+    }, {});
+
+    return razas;
 }
