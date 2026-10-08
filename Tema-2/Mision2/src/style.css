@@ -1,0 +1,4 @@
+/* Oculta un elemento (la ficha de detalles mientras no se ha pulsado ninguna tarjeta) */
+.oculto {
+  display: none;
+}

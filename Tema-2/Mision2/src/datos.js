@@ -16,7 +16,10 @@ export function limpiarPersonajes(personajes){
 
 export function limpiarDetalles(personaje){
    //Solo queremos saber los detalles de un personaje especifico por lo que Map no será necesario aquí
-    return{
+   return{
+
+        nombre: personaje.name,
+        imagen: personaje.image,
         // El planeta es un solo objeto con varios atributos y las transformaciones son una lista de objetos
             planeta:{
                 nombre: personaje.originPlanet.name,
