@@ -9,7 +9,7 @@ export function crearTarjeta(personaje) {
     raza.textContent = personaje.raza;
 
     const ki = document.createElement("p");
-    ki.textContent = personaje.ki;
+    ki.textContent = `Ki: ${personaje.ki}`;
 
     const imagen = document.createElement("img");
     imagen.src = personaje.imagen;
@@ -81,7 +81,8 @@ export function crearDetalles(personaje){
     nombre.textContent = personaje.nombre;
 
     const imagen = document.createElement("img");
-    imagen.textContent = personaje.imagen;
+    imagen.src = personaje.imagen;
+    imagen.alt = personaje.nombre;
 
     tarjetaDetalles.append(nombre, imagen, crearPlaneta(personaje.planeta), crearTransformaciones(personaje.transformaciones));
     return tarjetaDetalles;
