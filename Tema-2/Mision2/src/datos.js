@@ -5,7 +5,7 @@ export function limpiarPersonajes(personajes){
             id: personaje.id,
             imagen: personaje.image,
             nombre: personaje.name,
-            raza: personaje.race,
+            raza: personaje.race === "Unknown" ? "Raza Desconocida" : personaje.race,
             ki: personaje.ki === "unknown" ? "Desconocido" : personaje.ki,
         };
     });

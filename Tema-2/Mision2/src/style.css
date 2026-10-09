@@ -1,24 +1,20 @@
-/* =====================================================================
-   Estilo basado en mi página de Sparking Zero del proyecto Game Awards:
-   fondo morado-azulado, títulos amarillos y cian con brillo, paneles
-   morados translúcidos y la fuente Varent Grotesk ("Saiyan").
-   ===================================================================== */
-
+/* Fuente personalizada */
 @font-face {
   font-family: "Saiyan";
   src: url("./assets/fuentes/VarentGrotesk-Bold.otf");
 }
 
+/* Colores y sombras que se repiten en toda la página */
 :root {
   --amarillo: #e1ec0c;
   --cian: #46cde8;
-  --morado-panel: rgba(70, 0, 110, 0.55);
+  --morado-panel: rgba(70, 0, 110, 0.55); /* Morado transparente */
   --morado-ficha: rgba(120, 0, 140, 0.55);
-  --brillo: 2px 2px 5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 255, 255, 0.7);
+  --brillo: 2px 2px 5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 255, 255, 0.7); /* Sombra para dar efecto brillante */
   --sombra: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Oculta un elemento (la ficha de detalles mientras no se ha pulsado ninguna tarjeta) */
+/* Oculta la ficha de detalles hasta que se pulsa una tarjeta */
 .oculto {
   display: none;
 }
@@ -27,43 +23,45 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Fondo del cuerpo */
 body {
   margin: 0;
   padding-bottom: 6vh;
   min-height: 100vh;
   background-color: blueviolet;
   background-image: url("./assets/img/fondo2.jpg");
-  background-size: cover;
-  background-attachment: fixed;
+  background-size: cover; /* Hace que la imagen cubra toda la pantalla */
+  background-attachment: fixed; /* Fija el fondo para que no se mueva */
   color: white;
   font-family: "Saiyan", sans-serif;
   text-align: center;
   overflow-x: hidden;
 }
 
-/* ---------- Cabecera ---------- */
+/*CABECERA*/
 
+/* Encabezado principal */
 h1 {
   margin: 0;
   padding: 5vh 1rem 0;
   color: var(--amarillo);
-  font-size: clamp(2.2rem, 6vw, 4rem);
+  font-size: clamp(2.2rem, 6vw, 4rem); /* Cambia de tamaño según el ancho de la pantalla */
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-shadow: var(--brillo);
 }
 
-/* El separador de estrellas de Sparking Zero debajo del título */
+/* Separador debajo del título */
 h1::after {
   content: "";
   display: block;
   width: min(900px, 90%);
-  aspect-ratio: 1920 / 150;
+  aspect-ratio: 1920 / 150; /* Misma proporción que la imagen del separador */
   margin: 1.5vh auto 0;
   background: url("./assets/img/separador.png") center / contain no-repeat;
 }
 
-/* Mensajes de carga y error: solo laten cuando tienen texto */
+/* Mensajes de carga y error */
 .mensajes {
   margin: 1rem auto;
   color: var(--cian);
@@ -71,6 +69,7 @@ h1::after {
   text-shadow: var(--brillo);
 }
 
+/* Solo parpadean cuando tienen texto */
 .mensajes:not(:empty) {
   animation: latido 1.2s ease-in-out infinite alternate;
 }
@@ -86,16 +85,17 @@ h1::after {
   padding: 0.6em 1.2em;
   min-width: 260px;
   border: 2px solid var(--cian);
-  border-radius: 999px;
+  border-radius: 999px; /* Bordes completamente redondos */
   background-color: var(--morado-panel);
   color: white;
-  font-family: inherit;
+  font-family: inherit; /* Usa la misma fuente que el resto de la página */
   font-size: 1.1rem;
   box-shadow: 0 0 12px rgba(70, 205, 232, 0.6);
-  cursor: pointer;
+  cursor: pointer; /* Cambia el cursor a mano */
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
+/* Efecto hover */
 #desplegableRaza:hover,
 #desplegableRaza:focus-visible {
   outline: none;
@@ -103,58 +103,62 @@ h1::after {
   box-shadow: 0 0 22px var(--cian);
 }
 
+/* Opciones del desplegable */
 #desplegableRaza option {
   background-color: #2a0050;
   color: white;
 }
 
-/* ---------- Tarjetas de personajes ---------- */
+/*TARJETAS*/
 
+/* Contenedor de las tarjetas */
 #contenedorPersonajes {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  display: grid; /* Rejilla para colocar las tarjetas en filas y columnas */
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); /* Mete tantas columnas como quepan */
   gap: 2rem;
   width: min(1250px, 92%);
-  margin: 0 auto;
+  margin: 0 auto; /* Centra el contenedor en la página */
 }
 
-/* Panel morado translúcido, como las secciones de Sparking Zero */
+/* Tarjeta de cada personaje */
 .tarjetas {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 1.2rem 1rem 1.4rem;
-  border: 2px solid transparent;
+  border: 2px solid transparent; /* Borde transparente inicial */
   border-radius: 15px;
   background-color: var(--morado-panel);
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px); /* Difumina el fondo que hay detrás */
   box-shadow: var(--sombra);
-  cursor: pointer;
+  cursor: pointer; /* Cambia el cursor a mano */
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Efecto hover */
 .tarjetas:hover {
-  transform: translateY(-6px) scale(1.03);
+  transform: translateY(-6px) scale(1.03); /* Sube la tarjeta y la hace un poco más grande */
   border-color: var(--cian);
   box-shadow: 0 0 20px rgba(70, 205, 232, 0.7);
 }
 
-/* La imagen se muestra la primera aunque en el HTML vaya al final */
+/* Imagen del personaje */
 .tarjetas img {
-  order: -1;
+  order: -1; /* La pone la primera aunque en el HTML vaya al final */
   width: 100%;
   height: 230px;
-  object-fit: contain;
-  /* Aura de ki: las imágenes tienen el fondo transparente, así que la sombra sigue la silueta */
-  filter: drop-shadow(0 0 8px rgba(225, 236, 12, 0.55));
+  object-fit: contain; /* La imagen se ve entera sin deformarse */
+  filter: drop-shadow(0 0 8px rgba(225, 236, 12, 0.55)); /* Aura de ki alrededor del personaje */
   transition: filter 0.3s ease, transform 0.3s ease;
 }
 
+/* Al pasar el ratón el aura brilla más */
 .tarjetas:hover img {
   transform: scale(1.08);
   filter: drop-shadow(0 0 14px var(--amarillo)) drop-shadow(0 0 28px rgba(225, 236, 12, 0.6));
 }
 
+/* Nombre del personaje */
 .tarjetas h2 {
   margin: 0.8rem 0 0.3rem;
   color: var(--amarillo);
@@ -171,26 +175,25 @@ h1::after {
   color: var(--cian);
 }
 
-/* ---------- Ficha de detalles ---------- */
+/*FICHA DE DETALLES*/
 
-/* Ventana flotante por encima de las tarjetas, como las cajas de Sparking Zero */
+/* Caja que se abre al pulsar una tarjeta */
 #detalles {
-  position: fixed;
+  position: fixed; /* Se queda quieta encima de la página */
   top: 7.5vh;
   left: 5%;
-  z-index: 999;
+  z-index: 999; /* Asegura que esté por encima de otros elementos */
   box-sizing: border-box;
   width: 90%;
   height: 85vh;
-  padding: 4.5rem 2.5rem 2rem; /* arriba deja sitio para la X de cerrar */
-  overflow-y: auto;
-  overscroll-behavior: contain; /* al llegar al final de la ficha, la rueda no mueve la página de detrás */
+  padding: 4.5rem 2.5rem 2rem; /* Arriba deja sitio para la X de cerrar */
+  overflow-y: auto; /* Si el contenido no cabe sale una barra para bajar */
+  overscroll-behavior: contain; /* Al llegar al final no se mueve la página de detrás */
   border-radius: 10px;
   background:
     linear-gradient(var(--morado-ficha), var(--morado-ficha)),
     url("./assets/img/fondo3.jpg") center / cover;
-  /* Sombra gigante: oscurece todo lo que queda detrás de la ficha */
-  box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.7); /* Oscurece todo lo que hay detrás de la caja */
   scrollbar-color: var(--cian) transparent;
   animation: aparecer 0.4s ease;
 }
@@ -200,33 +203,33 @@ h1::after {
   to   { opacity: 1; }
 }
 
-/* Botón de cerrar: la X de Sparking Zero, que gira al pasar el ratón */
+/* Botón de cerrar */
 #cerrarDetalles {
   position: fixed;
   top: calc(7.5vh + 14px);
   right: calc(5% + 28px);
   width: 46px;
   height: 46px;
-  padding: 0;
+  padding: 0; /* Sin espacio interno */
   border: none;
-  font-size: 0; /* oculta la palabra "Cerrar", pero los lectores de pantalla la siguen leyendo */
+  font-size: 0; /* Oculta la palabra "Cerrar" pero los lectores de pantalla la siguen leyendo */
   background: url("./assets/img/cerrar.png") center / contain no-repeat;
-  filter: invert(1) drop-shadow(0 0 6px rgba(0, 0, 0, 0.6)); /* la X es negra: invert la vuelve blanca */
-  cursor: pointer;
+  filter: invert(1) drop-shadow(0 0 6px rgba(0, 0, 0, 0.6)); /* La X es negra, con invert se vuelve blanca */
+  cursor: pointer; /* Cambia el cursor a mano */
   transition: transform 1s ease;
 }
 
+/* Efecto hover: la X gira */
 #cerrarDetalles:hover,
 #cerrarDetalles:focus-visible {
   outline: none;
   transform: rotate(360deg) scale(1.15);
 }
 
-/* Distribución de la ficha: el personaje en grande a la izquierda y,
-   a la derecha, el planeta arriba y las transformaciones abajo */
+/* Distribución de la ficha: personaje a la izquierda, planeta y transformaciones a la derecha */
 #contenedorDetalles > div {
   display: grid;
-  grid-template-columns: minmax(240px, 2fr) 3fr;
+  grid-template-columns: minmax(240px, 2fr) 3fr; /* La columna de la derecha es más ancha */
   grid-template-rows: auto auto 1fr;
   grid-template-areas:
     "nombre planeta"
@@ -236,7 +239,7 @@ h1::after {
   align-items: start;
 }
 
-/* Nombre del personaje, encima de su imagen */
+/* Nombre del personaje */
 #contenedorDetalles h2 {
   grid-area: nombre;
   margin: 0;
@@ -245,22 +248,22 @@ h1::after {
   text-shadow: var(--brillo);
 }
 
-/* Imagen grande del personaje: se queda fija a la izquierda mientras bajas por las transformaciones */
+/* Imagen grande del personaje */
 #contenedorDetalles > div > img {
   grid-area: imagen;
-  position: sticky;
+  position: sticky; /* Se queda fija mientras bajas por las transformaciones */
   top: 1rem;
   width: 100%;
   height: min(60vh, 520px);
   object-fit: contain;
-  filter: drop-shadow(0 0 14px var(--amarillo)) drop-shadow(0 0 30px rgba(225, 236, 12, 0.5));
+  filter: drop-shadow(0 0 14px var(--amarillo)) drop-shadow(0 0 30px rgba(225, 236, 12, 0.5)); /* Aura de ki más fuerte que en las tarjetas */
 }
 
-/* Bloque del planeta (primer <div>, lo crea crearPlaneta): imagen redonda a la izquierda y texto a la derecha */
+/* Bloque del planeta (el primer div de la ficha) */
 #contenedorDetalles > div > div:nth-of-type(1) {
   grid-area: planeta;
   display: grid;
-  grid-template-columns: 170px 1fr;
+  grid-template-columns: 170px 1fr; /* Imagen a la izquierda y texto a la derecha */
   grid-template-areas:
     "foto nombre"
     "foto estado";
@@ -274,6 +277,7 @@ h1::after {
   text-align: left;
 }
 
+/* Nombre del planeta */
 #contenedorDetalles > div > div:nth-of-type(1) p:first-child {
   grid-area: nombre;
   align-self: end;
@@ -282,15 +286,17 @@ h1::after {
   text-shadow: var(--brillo);
 }
 
+/* Imagen del planeta */
 #contenedorDetalles > div > div:nth-of-type(1) img {
   grid-area: foto;
   width: 170px;
   height: 170px;
   object-fit: cover;
-  border-radius: 50%; /* recorte redondo, como un planeta */
+  border-radius: 50%; /* Recorte redondo como un planeta */
   box-shadow: 0 0 20px rgba(70, 205, 232, 0.7);
 }
 
+/* Si el planeta está destruido o intacto */
 #contenedorDetalles > div > div:nth-of-type(1) p:last-child {
   grid-area: estado;
   align-self: start;
@@ -298,26 +304,26 @@ h1::after {
   color: var(--cian);
 }
 
-/* Bloque de transformaciones (segundo <div>, lo crea crearTransformaciones) */
+/* Bloque de las transformaciones (el segundo div de la ficha) */
 #contenedorDetalles > div > div:nth-of-type(2) {
   grid-area: transformaciones;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Mete tantas columnas como quepan */
   gap: 1rem;
-  color: var(--amarillo); /* para el texto "Sin transformaciones" */
+  color: var(--amarillo); /* Color del texto "Sin transformaciones" */
   font-size: 1.2rem;
 }
 
-/* Título del bloque, generado desde el CSS */
+/* Título del bloque */
 #contenedorDetalles > div > div:nth-of-type(2)::before {
-  content: "Transformaciones";
-  grid-column: 1 / -1;
+  content: "Transformaciones"; /* El título se pone desde el CSS */
+  grid-column: 1 / -1; /* Ocupa toda la fila */
   font-size: 1.6rem;
   text-align: left;
   text-shadow: var(--brillo);
 }
 
-/* Sin transformaciones: el texto ocupa todo el ancho en vez de una sola casilla de la rejilla */
+/* Cuando no hay transformaciones el texto ocupa todo el ancho */
 #contenedorDetalles > div > div:nth-of-type(2):not(:has(> div)) {
   display: block;
   color: white;
@@ -330,7 +336,7 @@ h1::after {
   color: var(--amarillo);
 }
 
-/* Cada transformación (la crea crearTransformacion) */
+/* Cada transformación */
 #contenedorDetalles > div > div:nth-of-type(2) > div {
   padding: 0.8rem;
   border-radius: 15px;
@@ -339,16 +345,18 @@ h1::after {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Efecto hover */
 #contenedorDetalles > div > div:nth-of-type(2) > div:hover {
   transform: translateY(-6px);
   box-shadow: 0 0 18px rgba(70, 205, 232, 0.7);
 }
 
+/* Imagen de la transformación */
 #contenedorDetalles > div > div:nth-of-type(2) img {
   width: 100%;
   height: 170px;
   object-fit: contain;
-  filter: drop-shadow(0 0 10px rgba(225, 236, 12, 0.7));
+  filter: drop-shadow(0 0 10px rgba(225, 236, 12, 0.7)); /* Aura de ki */
 }
 
 #contenedorDetalles > div > div:nth-of-type(2) p {
@@ -362,8 +370,9 @@ h1::after {
   color: var(--cian);
 }
 
-/* ---------- Tablet: la ficha pasa a una sola columna ---------- */
+/*TABLET*/
 
+/* En pantallas medianas la ficha pasa a una sola columna */
 @media (max-width: 900px) {
   #contenedorDetalles > div {
     grid-template-columns: 1fr;
@@ -380,13 +389,14 @@ h1::after {
   }
 
   #contenedorDetalles > div > img {
-    position: static;
+    position: static; /* Ya no se queda fija */
     height: 300px;
   }
 }
 
-/* ---------- Móvil ---------- */
+/*MÓVIL*/
 
+/* En el móvil todo más pequeño y la ficha ocupa toda la pantalla */
 @media (max-width: 600px) {
   #contenedorPersonajes {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -422,14 +432,16 @@ h1::after {
   }
 
   #contenedorDetalles > div > div:nth-of-type(2) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* Dos transformaciones por fila */
   }
 }
 
-/* Si el usuario tiene activado "reducir movimiento", se quitan animaciones y transiciones */
+/* Si el usuario tiene activado reducir movimiento se quitan las animaciones */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation: none !important;
     transition: none !important;
   }
 }
+
+/*************/
