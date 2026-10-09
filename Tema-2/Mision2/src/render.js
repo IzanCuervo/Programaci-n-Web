@@ -8,6 +8,9 @@ export function crearTarjeta(personaje) {
     const raza = document.createElement("p");
     raza.textContent = personaje.raza;
 
+    const ki = document.createElement("p");
+    ki.textContent = personaje.ki;
+
     const imagen = document.createElement("img");
     imagen.src = personaje.imagen;
     imagen.alt = personaje.nombre;
@@ -16,7 +19,7 @@ export function crearTarjeta(personaje) {
     tarjeta.classList.add("tarjetas");
     tarjeta.dataset.id = personaje.id; //La id de cada tarjeta es la correspondiente a su personaje
 
-    tarjeta.append(nombre, raza, imagen);
+    tarjeta.append(nombre, raza, ki, imagen);
     return tarjeta;
 }
 
@@ -77,7 +80,10 @@ export function crearDetalles(personaje){
     const nombre = document.createElement("h2");
     nombre.textContent = personaje.nombre;
 
-    tarjetaDetalles.append(nombre, crearPlaneta(personaje.planeta), crearTransformaciones(personaje.transformaciones));
+    const imagen = document.createElement("img");
+    imagen.textContent = personaje.imagen;
+
+    tarjetaDetalles.append(nombre, imagen, crearPlaneta(personaje.planeta), crearTransformaciones(personaje.transformaciones));
     return tarjetaDetalles;
 }
 

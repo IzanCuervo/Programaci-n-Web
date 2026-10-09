@@ -39,6 +39,8 @@ async function cargarPersonajes() {
 }
 
 async function cargarDetalles(id){
+    //Cada que carga los detalles nos aseguraremos de que el contenedor este vacio
+    contenedorDetalles.textContent = "";
     fichaDetalles.classList.remove("oculto");
     mensajeCargaDetalles.textContent = "Cargando...";
 

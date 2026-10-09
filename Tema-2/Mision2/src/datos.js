@@ -6,10 +6,7 @@ export function limpiarPersonajes(personajes){
             imagen: personaje.image,
             nombre: personaje.name,
             raza: personaje.race,
-            ki: personaje.ki,
-            maxKi: personaje.maxKi,
-            descripcion: personaje.description,
-            genero: personaje.gender,
+            ki: personaje.ki === "unknown" ? "Desconocido" : personaje.ki,
         };
     });
 }
