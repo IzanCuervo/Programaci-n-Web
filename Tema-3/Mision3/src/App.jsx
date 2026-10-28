@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { obtenerPersonajes, obtenerDetalles } from './api.js'
 import { limpiarPersonajes } from './datos.js'
-import Personaje from './components/Personaje.jsx'
+import ListaPersonajes from './components/ListaPersonajes.jsx'
 import './App.css'
 
 function App() {
@@ -11,29 +11,40 @@ function App() {
   const [error, setError] = useState(null)
 
   useEffect(() =>{
+    let ignorar = false
+
     async function cargaPersonajes(){
       try{
         const datos = await obtenerPersonajes()
         const limpios = limpiarPersonajes(datos)
-        setPersonajes(limpios)
+        if(!ignorar){
+          setPersonajes(limpios)
+        }
       }catch(fallo){
         console.error(fallo)
-        setError("No se ha podido cargar el contenido")
+        if(!ignorar){
+          setError("No se ha podido cargar el contenido")
+        }
       } finally {
-        setCargando(false)
+        if(!ignorar){
+          setCargando(false)
+        }
       }
     }
 
     cargaPersonajes();
+
+    return () => {
+      ignorar = true
+    }
   }, []);
   return (
     <>
       {cargando && <p>Cargando personajes...</p>}
       {error && <p>{error}</p>} {/*Pintamos el contenido de error*/}
-      <p>Personajes cargados: {personajes.length}</p>
 
-      {/*De esta manera pintamos los personajes en pantalla*/}
-      {personajes.map((personaje) => (<Personaje key={personaje.id} personaje={personaje}/>))}
+      <ListaPersonajes personajes={personajes}/>
+     
     </>
   )
 }
