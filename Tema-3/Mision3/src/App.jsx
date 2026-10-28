@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { obtenerPersonajes, obtenerDetalles } from './api.js'
 import { limpiarPersonajes } from './datos.js'
+import Personaje from './components/Personaje.jsx'
 import './App.css'
 
 function App() {
@@ -18,6 +19,9 @@ function App() {
   return (
     <>
       <p>Personajes cargados: {personajes.length}</p>
+
+      {/*De esta manera pintamos los personajes en pantalla*/}
+      {personajes.map((personaje) => (<Personaje key={personaje.id} personaje={personaje}/>))}
     </>
   )
 }
