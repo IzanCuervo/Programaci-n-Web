@@ -7,17 +7,29 @@ import './App.css'
 function App() {
   //Los personajes comienzan en un array vacío, en el que se van almacenar los personajes devueltos por la API
   const [personajes, setPersonajes] = useState([])
+  const [cargando, setCargando] = useState(true)
+  const [error, setError] = useState(null)
+
   useEffect(() =>{
     async function cargaPersonajes(){
-      const datos = await obtenerPersonajes()
-      const limpios = limpiarPersonajes(datos)
-      setPersonajes(limpios)
+      try{
+        const datos = await obtenerPersonajes()
+        const limpios = limpiarPersonajes(datos)
+        setPersonajes(limpios)
+      }catch(fallo){
+        console.error(fallo)
+        setError("No se ha podido cargar el contenido")
+      } finally {
+        setCargando(false)
+      }
     }
 
     cargaPersonajes();
   }, []);
   return (
     <>
+      {cargando && <p>Cargando personajes...</p>}
+      {error && <p>{error}</p>} {/*Pintamos el contenido de error*/}
       <p>Personajes cargados: {personajes.length}</p>
 
       {/*De esta manera pintamos los personajes en pantalla*/}
