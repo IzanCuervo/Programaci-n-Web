@@ -4,11 +4,14 @@ import { limpiarPersonajes, filtraRaza, contarPorRaza } from './datos.js'
 
 import ListaPersonajes from './components/ListaPersonajes.jsx'
 import FiltroRazas from './components/FiltroRazas.jsx'
+
+
 import './App.css'
 
 function App() {
   //Los personajes comienzan en un array vacío, en el que se van almacenar los personajes devueltos por la API
   const [personajes, setPersonajes] = useState([])
+  const [idSeleccionado, setIdSeleccionado] = useState(null)
   const [razaElegida, setRazaElegida] = useState("Todas")
 
   const [cargando, setCargando] = useState(true)
@@ -51,7 +54,7 @@ function App() {
       {error && <p>{error}</p>} {/*Pintamos el contenido de error*/}
 
       <FiltroRazas recuento={recuento} razaElegida={razaElegida} onCambiar={setRazaElegida} />
-      <ListaPersonajes personajes={personajesFiltrados}/>
+      <ListaPersonajes personajes={personajesFiltrados} onSeleccionar={setIdSeleccionado}/>
      
     </>
   )
