@@ -1,5 +1,7 @@
-import { useState, useEffect } from 'react'
-import { obtenerDetalles } from '../api.js'
+//import { useState, useEffect } from 'react'
+//import { obtenerDetalles } from '../api.js'
+import { urlDetalle } from '../api.js'
+import { useFetch } from '../hooks/useFetch.jsx'
 import { limpiarDetalles } from '../datos.js'
 
 
@@ -7,11 +9,16 @@ import Planeta from "./Planeta";
 import Transformaciones from './Transformaciones.jsx';
 
 export default function Ficha({id, onCerrar}){
-    const [cargando, setCargando] = useState(true)
-    const [detalles, setDetalles] = useState(null)
-    const [error, setError] = useState(null)
+    //El hook pide el personaje del id; si el id cambia, vuelve a pedir
+    const { datos, cargando, error } = useFetch(urlDetalle(id))
+    //Mientras carga datos es null, así que detalles también
+    const detalles = datos ? limpiarDetalles(datos) : null
 
-    useEffect(() => {
+    //const [cargando, setCargando] = useState(true)
+    //const [detalles, setDetalles] = useState(null)
+    //const [error, setError] = useState(null)
+
+    /*useEffect(() => {
         let ignorar=false
         async function cargaDetalles() {
      
@@ -39,7 +46,7 @@ export default function Ficha({id, onCerrar}){
             ignorar = true
         }
 
-    }, [id])
+    }, [id])*/
     
 
     return(
