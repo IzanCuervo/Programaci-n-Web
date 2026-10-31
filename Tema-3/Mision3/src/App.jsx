@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
-import { obtenerPersonajes, obtenerDetalles } from './api.js'
+import { obtenerPersonajes } from './api.js'
 import { limpiarPersonajes, filtraRaza, contarPorRaza } from './datos.js'
 
 import ListaPersonajes from './components/ListaPersonajes.jsx'
 import FiltroRazas from './components/FiltroRazas.jsx'
-
+import Ficha from './components/Ficha.jsx'
 
 import './App.css'
 
@@ -55,7 +55,10 @@ function App() {
 
       <FiltroRazas recuento={recuento} razaElegida={razaElegida} onCambiar={setRazaElegida} />
       <ListaPersonajes personajes={personajesFiltrados} onSeleccionar={setIdSeleccionado}/>
-     
+      {/*Siempr que se haya seleccionado un personaje mostraremos los detalles */}
+      {idSeleccionado !== null && (
+        <Ficha id={idSeleccionado} onCerrar={() => setIdSeleccionado(null)} /> //siempre que onCerrar se clique el id seleccionado pasará a ser null
+      )}
     </>
   )
 }

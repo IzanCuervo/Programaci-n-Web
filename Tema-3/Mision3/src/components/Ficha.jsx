@@ -39,11 +39,21 @@ export default function Ficha({id, onCerrar}){
         }
 
     }, [id])
+    
 
     return(
         <section className='Ficha'>
+            {cargando && <p>Cargando Detalles...</p>}
+            {error && <p>{error}</p>}
+            {/*Es neceario el &&, por que los detalles solo se van a mostrar se encuentran en null (el usuario rompería la App) y cuando el usuario clique en un personaje*/}
+            {detalles && (
+                <>
+                    <h2>{detalles.nombre}</h2>
+                    <img src={detalles.imagen} alt={detalles.nombre}></img>
+                </>
+            )}
 
-
+            <button onClick={onCerrar}>Cerrar</button>
         </section>
     )
 }
