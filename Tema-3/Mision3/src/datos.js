@@ -29,6 +29,7 @@ export function limpiarDetalles(personaje){
 
             transformaciones: personaje.transformations.map((transformacion) =>{
                 return{
+                    id: transformacion.id,
                     nombre: transformacion.name,
                     imagen: transformacion.image,
                     ki: transformacion.ki,

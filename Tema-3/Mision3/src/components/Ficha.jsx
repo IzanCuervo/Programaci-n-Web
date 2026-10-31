@@ -4,6 +4,7 @@ import { limpiarDetalles } from '../datos.js'
 
 
 import Planeta from "./Planeta";
+import Transformaciones from './Transformaciones.jsx';
 
 export default function Ficha({id, onCerrar}){
     const [cargando, setCargando] = useState(true)
@@ -50,6 +51,8 @@ export default function Ficha({id, onCerrar}){
                 <>
                     <h2>{detalles.nombre}</h2>
                     <img src={detalles.imagen} alt={detalles.nombre}></img>
+                    <Planeta planeta={detalles.planeta} />
+                    <Transformaciones transformaciones={detalles.transformaciones}/>
                 </>
             )}
 
