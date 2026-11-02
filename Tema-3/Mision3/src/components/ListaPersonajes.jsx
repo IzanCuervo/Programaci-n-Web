@@ -2,7 +2,10 @@
 import Personaje from "./Personaje.jsx"
 
 export default function ListaPersonajes({personajes, onSeleccionar}){
-
+    
+    if (personajes.length === 0) {
+        return <p>No hay personajes que coincidan</p>
+    }
     return( 
         <section className="contenedorPersonajes">
         <p>Personajes cargados: {personajes.length}</p>

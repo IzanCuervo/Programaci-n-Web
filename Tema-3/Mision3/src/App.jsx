@@ -1,17 +1,20 @@
 import { useState } from 'react'
 import { useFetch } from './hooks/useFetch.jsx'
 import { URL_PERSONAJES } from './api.js'
-import { limpiarPersonajes, filtraRaza, contarPorRaza } from './datos.js'
+import { limpiarPersonajes, filtraRaza, contarPorRaza, buscarPorNombre } from './datos.js'
 
 import ListaPersonajes from './components/ListaPersonajes.jsx'
 import FiltroRazas from './components/FiltroRazas.jsx'
+import Buscador from './components/Buscador.jsx'
 import Ficha from './components/Ficha.jsx'
 
 import './App.css'
 
+
 function App() {
   const [idSeleccionado, setIdSeleccionado] = useState(null)
   const [razaElegida, setRazaElegida] = useState("Todas")
+  const [nombreElegido, setNombreElegido] = useState("")
 
   //El hook se encarga de pedir los datos y nos devuelve datos, cargando y error
   const { datos, cargando, error } = useFetch(URL_PERSONAJES)
@@ -20,14 +23,29 @@ function App() {
 
   const recuento = contarPorRaza(personajes)
   const personajesFiltrados = razaElegida==="Todas" ? personajes : filtraRaza(personajes, razaElegida)
+  const personajesBuscados = buscarPorNombre(personajesFiltrados, nombreElegido)
+
+function cambiarRaza(raza) {
+  setRazaElegida(raza)
+  setNombreElegido("")
+}
+
+function buscar(nombre) {
+  setNombreElegido(nombre)
+  setRazaElegida("Todas")
+}
   return (
     <>
       {cargando && <p>Cargando personajes...</p>}
       {error && <p>{error}</p>} {/*Pintamos el contenido de error*/}
+      
       <h1>Dragon Ball</h1>
-      <FiltroRazas recuento={recuento} razaElegida={razaElegida} onCambiar={setRazaElegida} />
-      <ListaPersonajes personajes={personajesFiltrados} onSeleccionar={setIdSeleccionado}/>
-      {/*Siempr que se haya seleccionado un personaje mostraremos los detalles */}
+      
+      <FiltroRazas recuento={recuento} razaElegida={razaElegida} onCambiar={cambiarRaza} />
+      <Buscador busqueda={nombreElegido} onBuscar={buscar}/>
+      
+      {!cargando && !error && <ListaPersonajes personajes={personajesBuscados} onSeleccionar={setIdSeleccionado}/>}
+      {/*Siempre que se haya seleccionado un personaje mostraremos los detalles */}
       {idSeleccionado !== null && (
         <Ficha id={idSeleccionado} onCerrar={() => setIdSeleccionado(null)} /> //siempre que onCerrar se clique el id seleccionado pasará a ser null
       )}

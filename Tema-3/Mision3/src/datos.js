@@ -12,7 +12,7 @@ export function limpiarPersonajes(personajes){
 }
 
 export function limpiarDetalles(personaje){
-   //Solo queremos saber los detalles de un personaje especifico por lo que Map no será necesario aquí
+   //Solo queremos saber los detalles de un personaje específico por lo que map no será necesario aquí
    return{
 
         nombre: personaje.name,
@@ -25,7 +25,7 @@ export function limpiarDetalles(personaje){
                 destruido: personaje.originPlanet.isDestroyed,
             },
 
-            //Transformaciones es una lista por lo tanto auí si necesitamos recorrer las del personaje
+            //Transformaciones es una lista por lo tanto aquí sí necesitamos recorrer las del personaje
 
             transformaciones: personaje.transformations.map((transformacion) =>{
                 return{
@@ -50,7 +50,7 @@ export function contarPorRaza(personajes){
     // recuento es la "pizarra": empieza vacía ({}) y en cada vuelta se apunta la raza de un personaje
     const razas = personajes.reduce((recuento, personaje) => {
         const raza = personaje.raza;
-        //Con reduce automatizamos el recorrido, simplemente si la raza aun no esta definida, se crea y se iguala a 1, sino simplemente se suma un personaje más
+        //Con reduce automatizamos el recorrido, simplemente si la raza aún no está definida, se crea y se iguala a 1, si no, simplemente se suma un personaje más
         if (recuento[raza] === undefined) {
             recuento[raza] = 1;                  // primera vez que sale esta raza: la apuntamos con 1
         } else {
@@ -61,4 +61,11 @@ export function contarPorRaza(personajes){
     }, {});
 
     return razas;
+}
+
+//Buscador por nombre
+
+export function buscarPorNombre(personajes, nombre){
+    const personajesNombre = personajes.filter(personaje => personaje.nombre.toLowerCase().includes(nombre.toLowerCase()))
+    return personajesNombre
 }

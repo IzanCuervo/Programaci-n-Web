@@ -16,7 +16,7 @@ export default function Ficha({id, onCerrar}){
         <section className='Ficha'>
             {cargando && <p>Cargando Detalles...</p>}
             {error && <p>{error}</p>}
-            {/*Es neceario el &&, por que los detalles solo se van a mostrar se encuentran en null (el usuario rompería la App) y cuando el usuario clique en un personaje*/}
+            {/*Es necesario el &&, porque mientras carga los detalles se encuentran en null y al leer detalles.nombre la App se rompería*/}
             {detalles && (
                 <>
                     <h2>{detalles.nombre}</h2>

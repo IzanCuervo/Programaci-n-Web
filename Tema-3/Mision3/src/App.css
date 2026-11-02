@@ -37,10 +37,13 @@ h1::after {
   to   { opacity: 1; }
 }
 
-/*FILTRO DE RAZAS (FiltroRazas)*/
+/*FILTROS (FiltroRazas y Buscador)*/
 
-select {
-  margin: 2vh 0 1vh;
+/* El desplegable y el buscador comparten el mismo aspecto y van uno al lado del otro */
+select,
+input[type="search"] {
+  box-sizing: border-box;
+  margin: 2vh 0.5rem 1vh;
   padding: 0.6em 1.2em;
   min-width: 260px;
   border: 2px solid var(--cian);
@@ -56,10 +59,29 @@ select {
 
 /* Efecto hover */
 select:hover,
-select:focus-visible {
+select:focus-visible,
+input[type="search"]:hover,
+input[type="search"]:focus-visible {
   outline: none;
   transform: scale(1.04);
   box-shadow: 0 0 22px var(--cian);
+}
+
+/* El buscador no abre nada al pulsarlo, así que lleva el cursor de escribir */
+input[type="search"] {
+  cursor: text;
+}
+
+/* Texto de ejemplo del buscador */
+input[type="search"]::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Mensaje de "No hay personajes que coincidan" (va después del buscador): no parpadea */
+#root > input[type="search"] ~ p {
+  margin-top: 3vh;
+  color: var(--amarillo);
+  animation: none;
 }
 
 /* Opciones del desplegable */
@@ -84,7 +106,7 @@ select option {
   grid-column: 1 / -1;
   margin: 0 0 0.5rem;
   color: var(--cian);
-  text-shadow: var(--brillo);
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.9); /* Sombra oscura para que se lea sobre el fondo claro */
 }
 
 /* Tarjeta de cada personaje */
@@ -382,9 +404,11 @@ div.Transformaciones p:last-of-type {
     height: 170px;
   }
 
-  select {
+  select,
+  input[type="search"] {
     min-width: 0;
     width: min(320px, 90%);
+    margin: 1vh 0;
   }
 
   .Ficha {
