@@ -11,7 +11,7 @@ export default function Ficha({id, onCerrar}){
     const { datos, cargando, error } = useFetch(urlDetalle(id))
     //Mientras carga datos es null, así que detalles también
     const detalles = datos ? limpiarDetalles(datos) : null
-
+ 
     return(
         <section className='Ficha'>
             {cargando && <p>Cargando Detalles...</p>}

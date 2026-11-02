@@ -1,184 +1,417 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
+/* Estilos de los componentes */
 
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
+/*CABECERA*/
+
+/* Título principal (si se añade un <h1> en App) */
+h1 {
+  margin: 0;
+  padding: 2vh 1rem 0;
+  color: var(--amarillo);
+  font-size: clamp(2.2rem, 6vw, 4rem); /* Cambia de tamaño según el ancho de la pantalla */
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-shadow: var(--brillo);
 }
 
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
+/* Separador debajo del título */
+h1::after {
+  content: "";
+  display: block;
+  width: min(900px, 90%);
+  aspect-ratio: 1920 / 150; /* Misma proporción que la imagen del separador */
+  margin: 1.5vh auto 0;
+  background: url("./assets/img/separador.png") center / contain no-repeat;
 }
 
-#center {
+/* Mensajes de carga y error de App (son los <p> que cuelgan directamente de la página) */
+#root > p {
+  margin: 1rem auto;
+  color: var(--cian);
+  font-size: 1.3rem;
+  text-shadow: var(--brillo);
+  animation: latido 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes latido {
+  from { opacity: 0.55; }
+  to   { opacity: 1; }
+}
+
+/*FILTRO DE RAZAS (FiltroRazas)*/
+
+select {
+  margin: 2vh 0 1vh;
+  padding: 0.6em 1.2em;
+  min-width: 260px;
+  border: 2px solid var(--cian);
+  border-radius: 999px; /* Bordes completamente redondos */
+  background-color: var(--morado-panel);
+  color: white;
+  font-family: inherit; /* Usa la misma fuente que el resto de la página */
+  font-size: 1.1rem;
+  box-shadow: 0 0 12px rgba(70, 205, 232, 0.6);
+  cursor: pointer; /* Cambia el cursor a mano */
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Efecto hover */
+select:hover,
+select:focus-visible {
+  outline: none;
+  transform: scale(1.04);
+  box-shadow: 0 0 22px var(--cian);
+}
+
+/* Opciones del desplegable */
+select option {
+  background-color: var(--morado-oscuro);
+  color: white;
+}
+
+/*TARJETAS (ListaPersonajes y Personaje)*/
+
+/* Contenedor de las tarjetas */
+.contenedorPersonajes {
+  display: grid; /* Rejilla para colocar las tarjetas en filas y columnas */
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); /* Mete tantas columnas como quepan */
+  gap: 2rem;
+  width: min(1250px, 92%);
+  margin: 0 auto; /* Centra el contenedor en la página */
+}
+
+/* Contador de personajes: ocupa toda la fila encima de las tarjetas */
+.contenedorPersonajes > p {
+  grid-column: 1 / -1;
+  margin: 0 0 0.5rem;
+  color: var(--cian);
+  text-shadow: var(--brillo);
+}
+
+/* Tarjeta de cada personaje */
+.tarjetas {
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
+  align-items: center;
+  padding: 1.2rem 1rem 1.4rem;
+  border: 2px solid transparent; /* Borde transparente inicial */
+  border-radius: 15px;
+  background-color: var(--morado-panel);
+  backdrop-filter: blur(6px); /* Difumina el fondo que hay detrás */
+  box-shadow: var(--sombra);
+  cursor: pointer; /* Cambia el cursor a mano */
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
+/* Efecto hover */
+.tarjetas:hover {
+  transform: translateY(-6px) scale(1.03); /* Sube la tarjeta y la hace un poco más grande */
+  border-color: var(--cian);
+  box-shadow: 0 0 20px rgba(70, 205, 232, 0.7);
+}
+
+/* Imagen del personaje */
+.tarjetas img {
+  order: -1; /* La pone la primera aunque en el JSX vaya al final */
+  width: 100%;
+  height: 230px;
+  object-fit: contain; /* La imagen se ve entera sin deformarse */
+  filter: drop-shadow(0 0 8px rgba(225, 236, 12, 0.55)); /* Aura de ki alrededor del personaje */
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+/* Al pasar el ratón el aura brilla más */
+.tarjetas:hover img {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 14px var(--amarillo)) drop-shadow(0 0 28px rgba(225, 236, 12, 0.6));
+}
+
+/* Nombre del personaje */
+.tarjetas h2 {
+  margin: 0.8rem 0 0.3rem;
+  color: var(--amarillo);
+  font-size: 1.35rem;
+  text-shadow: var(--brillo);
+}
+
+.tarjetas p {
+  margin: 0.15rem 0;
+}
+
+/* El último párrafo de la tarjeta es el ki */
+.tarjetas p:last-of-type {
+  color: var(--cian);
+}
+
+/*FICHA DE DETALLES (Ficha)*/
+
+/* Caja que se abre al pulsar una tarjeta */
+.Ficha {
+  position: fixed; /* Se queda quieta encima de la página */
+  top: 7.5vh;
+  left: 5%;
+  z-index: 999; /* Asegura que esté por encima de las tarjetas */
+  box-sizing: border-box;
+  width: 90%;
+  height: 85vh;
+  padding: 4.5rem 2.5rem 2rem; /* Arriba deja sitio para la X de cerrar */
+  overflow-y: auto; /* Si el contenido no cabe sale una barra para bajar */
+  overscroll-behavior: contain; /* Al llegar al final no se mueve la página de detrás */
+  border-radius: 10px;
+  background:
+    linear-gradient(var(--morado-ficha), var(--morado-ficha)),
+    url("./assets/img/fondo3.jpg") center / cover;
+  box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.7); /* Oscurece todo lo que hay detrás de la caja */
+  scrollbar-color: var(--cian) transparent;
+  animation: aparecer 0.4s ease;
+
+  /* Distribución: personaje a la izquierda, planeta y transformaciones a la derecha */
+  display: grid;
+  grid-template-columns: minmax(240px, 2fr) 3fr; /* La columna de la derecha es más ancha */
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas:
+    "nombre planeta"
+    "imagen planeta"
+    "imagen transformaciones";
+  gap: 1.5rem 3rem;
+  align-content: start;
+  align-items: start;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Mensajes de carga y error de la ficha: ocupan todo el ancho */
+.Ficha > p:first-child,
+.Ficha > p:first-child + p {
+  grid-column: 1 / -1;
+  color: var(--cian);
+  font-size: 1.4rem;
+  text-shadow: var(--brillo);
+  animation: latido 1.2s ease-in-out infinite alternate;
+}
+
+/* Botón de cerrar */
+.Ficha > button {
+  position: fixed;
+  top: calc(7.5vh + 14px);
+  right: calc(5% + 28px);
+  width: 46px;
+  height: 46px;
+  padding: 0; /* Sin espacio interno */
+  border: none;
+  font-size: 0; /* Oculta la palabra "Cerrar" pero los lectores de pantalla la siguen leyendo */
+  background: url("./assets/img/cerrar.png") center / contain no-repeat;
+  filter: invert(1) drop-shadow(0 0 6px rgba(0, 0, 0, 0.6)); /* La X es negra, con invert se vuelve blanca */
+  cursor: pointer; /* Cambia el cursor a mano */
+  transition: transform 1s ease;
+}
+
+/* Efecto hover: la X gira */
+.Ficha > button:hover,
+.Ficha > button:focus-visible {
+  outline: none;
+  transform: rotate(360deg) scale(1.15);
+}
+
+/* Nombre del personaje */
+.Ficha > h2 {
+  grid-area: nombre;
+  margin: 0;
+  color: cyan;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  text-shadow: var(--brillo);
+}
+
+/* Imagen grande del personaje */
+.Ficha > img {
+  grid-area: imagen;
+  position: sticky; /* Se queda fija mientras bajas por las transformaciones */
+  top: 1rem;
+  width: 100%;
+  height: min(60vh, 520px);
+  object-fit: contain;
+  filter: drop-shadow(0 0 14px var(--amarillo)) drop-shadow(0 0 30px rgba(225, 236, 12, 0.5)); /* Aura de ki más fuerte que en las tarjetas */
+}
+
+/*PLANETA (Planeta)*/
+
+.Planetas {
+  grid-area: planeta;
+  display: grid;
+  grid-template-columns: 170px 1fr; /* Imagen a la izquierda y texto a la derecha */
+  grid-template-areas:
+    "foto nombre"
+    "foto estado";
+  align-items: center;
+  gap: 0.4rem 1.5rem;
+  padding: 1.2rem;
+  border-radius: 15px;
+  background-color: var(--morado-panel);
+  box-shadow: var(--sombra);
+  font-size: 1.3rem;
   text-align: left;
+}
 
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
+/* Imagen del planeta */
+.Planetas img {
+  grid-area: foto;
+  width: 170px;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 50%; /* Recorte redondo como un planeta */
+  box-shadow: 0 0 20px rgba(70, 205, 232, 0.7);
+}
+
+/* Nombre del planeta */
+.Planetas p:first-of-type {
+  grid-area: nombre;
+  align-self: end;
+  margin: 0;
+  color: var(--amarillo);
+  text-shadow: var(--brillo);
+}
+
+/* Si el planeta está destruido o intacto */
+.Planetas p:last-of-type {
+  grid-area: estado;
+  align-self: start;
+  margin: 0;
+  color: var(--cian);
+}
+
+/*TRANSFORMACIONES (Transformaciones y Transformacion)*/
+
+/* La lista: es la <section>; cada transformación es un <div> con la misma clase */
+section.Transformaciones {
+  grid-area: transformaciones;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Mete tantas columnas como quepan */
+  gap: 1rem;
+}
+
+/* Título del bloque, puesto desde el CSS. También sale encima de "Sin Transformaciones" */
+section.Transformaciones::before,
+.Planetas ~ p::before {
+  content: "Transformaciones";
+  display: block;
+  grid-column: 1 / -1; /* Ocupa toda la fila */
+  margin-bottom: 0.5rem;
+  color: var(--amarillo);
+  font-size: 1.6rem;
+  text-align: left;
+  text-shadow: var(--brillo);
+}
+
+/* El texto "Sin Transformaciones" (el <p> que va después del planeta) */
+.Planetas ~ p {
+  grid-area: transformaciones;
+  margin: 0;
+  font-size: 1.2rem;
+  text-align: left;
+}
+
+/* Cada transformación */
+div.Transformaciones {
+  padding: 0.8rem;
+  border-radius: 15px;
+  background-color: var(--morado-panel);
+  box-shadow: var(--sombra);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto hover */
+div.Transformaciones:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 18px rgba(70, 205, 232, 0.7);
+}
+
+/* Imagen de la transformación */
+div.Transformaciones img {
+  width: 100%;
+  height: 170px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(225, 236, 12, 0.7)); /* Aura de ki */
+}
+
+div.Transformaciones p {
+  margin: 0.25rem 0;
+  font-size: 1rem;
+}
+
+/* El último párrafo de cada transformación es su ki */
+div.Transformaciones p:last-of-type {
+  color: var(--cian);
+}
+
+/*TABLET*/
+
+/* En pantallas medianas la ficha pasa a una sola columna */
+@media (max-width: 900px) {
+  .Ficha {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "nombre"
+      "imagen"
+      "planeta"
+      "transformaciones";
   }
 
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
+  .Ficha > h2 {
     text-align: center;
   }
-}
 
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
+  .Ficha > img {
+    position: static; /* Ya no se queda fija */
+    height: 300px;
   }
 }
 
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
+/*MÓVIL*/
 
-  .logo {
-    height: 18px;
+/* En el móvil todo más pequeño y la ficha ocupa toda la pantalla */
+@media (max-width: 600px) {
+  .contenedorPersonajes {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
   }
 
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
+  .tarjetas img {
+    height: 170px;
   }
 
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
-}
-
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
-}
-
-.ticks {
-  position: relative;
-  width: 100%;
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
+  select {
+    min-width: 0;
+    width: min(320px, 90%);
   }
 
-  &::before {
+  .Ficha {
+    top: 0;
     left: 0;
-    border-left-color: var(--border);
+    width: 100%;
+    height: 100vh;
+    padding: 4.5rem 1rem 2rem;
+    border-radius: 0;
   }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
+
+  .Ficha > button {
+    top: 14px;
+    right: 18px;
+  }
+
+  .Planetas {
+    grid-template-columns: 100px 1fr;
+    font-size: 1.1rem;
+  }
+
+  .Planetas img {
+    width: 100px;
+    height: 100px;
+  }
+
+  section.Transformaciones {
+    grid-template-columns: repeat(2, 1fr); /* Dos transformaciones por fila */
   }
 }

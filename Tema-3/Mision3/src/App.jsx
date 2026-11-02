@@ -24,7 +24,7 @@ function App() {
     <>
       {cargando && <p>Cargando personajes...</p>}
       {error && <p>{error}</p>} {/*Pintamos el contenido de error*/}
-
+      <h1>Dragon Ball</h1>
       <FiltroRazas recuento={recuento} razaElegida={razaElegida} onCambiar={setRazaElegida} />
       <ListaPersonajes personajes={personajesFiltrados} onSeleccionar={setIdSeleccionado}/>
       {/*Siempr que se haya seleccionado un personaje mostraremos los detalles */}
