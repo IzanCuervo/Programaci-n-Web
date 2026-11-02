@@ -5,13 +5,14 @@ Alumno: Izan Cuervo
 
 ## Descripción
 
-En este proyecto he reconstruido en **React 19** el recopilatorio de personajes de Dragon Ball que hice en la Misión 2 con JavaScript sin framework. La app sigue utilizando la [Dragon Ball API](https://web.dragonball-api.com/), pero ahora la interfaz se encuentra dividida en componentes y lo que se ve en pantalla depende de los diferentes estados, en vez de crear y borrar elementos del DOM a mano, además se han agregado nuevas funcionalidades que la anterior no tenía.
+En este proyecto he reconstruido en **React 19** el recopilatorio de personajes de Dragon Ball que hice en la Misión 2 con JavaScript sin framework. La app sigue utilizando la [Dragon Ball API](https://web.dragonball-api.com/), pero ahora la interfaz se encuentra dividida en componentes y lo que se ve en pantalla depende de los diferentes estados, en vez de crear y borrar elementos del DOM a mano. Además se han agregado nuevas funcionalidades que la anterior no tenía.
 
 Al abrir la página se cargan los 58 personajes en tarjetas con su imagen, su raza y su ki. Se pueden filtrar por raza con un desplegable o buscar por su nombre, al pulsar una tarjeta se abre una ficha con el personaje en grande junto a su planeta de origen y sus transformaciones.
 
 - Está hecho con **React 19** y **Vite**, y revisado con **ESLint** (con el plugin de las reglas de los hooks).
 - Para la lógica de datos me he apoyado un poco en la de la Misión 2. La parte de pintar se ha rehecho desde cero con componentes.
-- En cuanto al estilo me decante por colores que fuesen llamativos, en los que predominan morados y azules, cabe destacar además que las fichas disponen de un hoover que hace que la imagen se escale con un tamaño un poco más grande junto con un tono amarillento que la recubre, en referencia al ki.
+- En cuanto al estilo me decanté por colores que fuesen llamativos, en los que predominan morados y azules, cabe destacar además que las tarjetas disponen de un hover que hace que la imagen se escale con un tamaño un poco más grande junto con un tono amarillento que la recubre, en referencia al ki.
+
 ## Cómo ejecutarlo
 
 Hace falta tener instalado **Node.js**. Desde la carpeta `Tema-3/Mision3`:
@@ -34,7 +35,7 @@ npm run lint
 1. Al abrir la página aparece **Cargando personajes...** mientras llegan los datos. Si falla la conexión, aparecerá un mensaje de error.
 2. En el **desplegable** se elige una raza (por ejemplo *Saiyan (10)*) y solo se muestran esos 10 personajes.
 3. En el **buscador** se escribe parte de un nombre (por ejemplo *go*) y se muestran los personajes que lo contienen, independientemente de que esté en mayúsculas o en minúsculas. Si no coincide ninguno, aparece *No hay personajes que coincidan*.
-4. Los dos filtros funcionan en conjunto: Si la raza es Saiyan, todo lo que se busque solo filtrará a los personajes que se encuentren en esa lista.
+4. Los dos filtros funcionan en conjunto: si la raza es Saiyan, todo lo que se busque solo filtrará a los personajes que se encuentren en esa lista.
 5. Al **pulsar una tarjeta** se abre la ficha del personaje, con su propio mensaje de carga mientras llegan los detalles.
 6. La ficha se cierra con la **X** de arriba a la derecha.
 
@@ -124,16 +125,16 @@ Lo he usado principalmente para:
   - la conexión de `useFetch` en `App` y en `Ficha`, y quitar el código antiguo que dejó de usarse;
   - la línea con `toLowerCase` e `includes` del buscador, los `if` de "Sin Transformaciones" y "No hay personajes que coincidan", y la condición `!cargando && !error` para no mostrar la lista mientras carga;
   - la corrección de las erratas de los comentarios;
-  - todo el CSS (`index.css` y `App.css`), adaptandolo a los componentes;
+  - todo el CSS (`index.css` y `App.css`), adaptándolo a los componentes;
   - borrar los archivos de la plantilla de Vite que no se usaban;
   - un borrador de este README, que después he revisado.
 
-**Lo que he hecho yo:** la decisión de reconstruir la app de la Misión 2 reutilizando la lógica de datos, rellenar todos los esqueletos, los componentes `Personaje`, `ListaPersonajes`, `Planeta`, `Transformacion` `Buscador` y `Transformaciones`, la carga con sus estados de cargando y error y la limpieza del efecto, el paso de `onSeleccionar` desde `App` hasta cada tarjeta, la ficha con su propia carga, el hook `useFetch`, el filtro por raza con valores derivados, el buscador, la decisión de combinar los dos filtros (después de probarlos por separado), el título de la página, los comentarios del código y las correcciones tras cada revisión.
+**Lo que he hecho yo:** la decisión de reconstruir la app de la Misión 2 reutilizando la lógica de datos, rellenar todos los esqueletos, los componentes `Personaje`, `ListaPersonajes`, `Planeta`, `Transformacion`, `Buscador` y `Transformaciones`, la carga con sus estados de cargando y error y la limpieza del efecto, el paso de `onSeleccionar` desde `App` hasta cada tarjeta, la ficha con su propia carga, el hook `useFetch`, el filtro por raza con valores derivados, el buscador, la decisión de combinar los dos filtros (después de probarlos por separado), el título de la página, los comentarios del código y las correcciones tras cada revisión.
 
 ## Autopsia
 
 ### Qué salió bien
-Lo que mejor ha salido es la separación de responsabilidades. `App` se encarga de los datos y del estado, y el resto de componentes solo reciben datos por props y los pintan, así que cuando algo fallaba sabía en qué archivo mirar. También he podido reutilizar `datos.js` de la Misión 2 casi sin cambios, ya que las funciones que limpian y filtran los datos no dependen de cómo se pinta la página. Además, el hook `useFetch` me ha permitido quitar el código que tenía repetido en `App` y en `Ficha`.
+Lo que mejor ha salido es la separación de responsabilidades. `App` se encarga de los datos y del estado, y el resto de componentes solo reciben datos por props y los pintan, así que cuando algo fallaba sabía en qué archivo mirar. También he podido apoyarme en `datos.js` de la Misión 2 , ya que las funciones que limpian y filtran los datos no dependen de cómo se pinta la página. Además, el hook `useFetch` me ha permitido quitar el código que tenía repetido en `App` y en `Ficha`.
 
 ### Qué me costó
 Lo que más me costó fue `useEffect`, ya que empecé a usarlo antes de que se explicara en clase. Al principio no distinguía qué iba en el cuerpo del componente, qué en el efecto y qué en el `return`, y metí el recuento de razas dentro del efecto, donde solo se calculaba una vez con la lista todavía vacía. También me costó entender la variable `ignorar` de la limpieza, porque pensaba que siempre valía `false` al reiniciarse, y pasar una función por props a través de varios componentes, como `onSeleccionar`, que tiene que pasar por `ListaPersonajes` para llegar a cada tarjeta.
