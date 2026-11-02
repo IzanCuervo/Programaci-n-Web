@@ -1,5 +1,3 @@
-//import { useState, useEffect } from 'react'
-//import { obtenerDetalles } from '../api.js'
 import { urlDetalle } from '../api.js'
 import { useFetch } from '../hooks/useFetch.jsx'
 import { limpiarDetalles } from '../datos.js'
@@ -13,41 +11,6 @@ export default function Ficha({id, onCerrar}){
     const { datos, cargando, error } = useFetch(urlDetalle(id))
     //Mientras carga datos es null, así que detalles también
     const detalles = datos ? limpiarDetalles(datos) : null
-
-    //const [cargando, setCargando] = useState(true)
-    //const [detalles, setDetalles] = useState(null)
-    //const [error, setError] = useState(null)
-
-    /*useEffect(() => {
-        let ignorar=false
-        async function cargaDetalles() {
-     
-            try{
-                const datos = await obtenerDetalles(id)
-                const limpios = limpiarDetalles(datos)
-                if(!ignorar){
-                    setDetalles(limpios)
-                }
-            }catch (fallo){
-                console.error(fallo)
-                if(!ignorar){
-                    setError("No se han podido cargar los detalles")
-                }
-            } finally {
-                if(!ignorar){
-                    setCargando(false)
-                }
-            }
-        }
-
-        cargaDetalles()
-
-        return() => {
-            ignorar = true
-        }
-
-    }, [id])*/
-    
 
     return(
         <section className='Ficha'>
