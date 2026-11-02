@@ -25,15 +25,7 @@ function App() {
   const personajesFiltrados = razaElegida==="Todas" ? personajes : filtraRaza(personajes, razaElegida)
   const personajesBuscados = buscarPorNombre(personajesFiltrados, nombreElegido)
 
-function cambiarRaza(raza) {
-  setRazaElegida(raza)
-  setNombreElegido("")
-}
 
-function buscar(nombre) {
-  setNombreElegido(nombre)
-  setRazaElegida("Todas")
-}
   return (
     <>
       {cargando && <p>Cargando personajes...</p>}
@@ -41,8 +33,8 @@ function buscar(nombre) {
       
       <h1>Dragon Ball</h1>
       
-      <FiltroRazas recuento={recuento} razaElegida={razaElegida} onCambiar={cambiarRaza} />
-      <Buscador busqueda={nombreElegido} onBuscar={buscar}/>
+      <FiltroRazas recuento={recuento} razaElegida={razaElegida} onCambiar={setRazaElegida} />
+      <Buscador busqueda={nombreElegido} onBuscar={setNombreElegido}/>
       
       {!cargando && !error && <ListaPersonajes personajes={personajesBuscados} onSeleccionar={setIdSeleccionado}/>}
       {/*Siempre que se haya seleccionado un personaje mostraremos los detalles */}
