@@ -1,0 +1,32 @@
+{
+  "jugadores": [
+    { "id": "1", "nombre": "Mark Evans", "posicion": "POR", "elemento": "Montaña", "equipo": "Raimon", "media": 90, "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/d/w/dwho-wi8ruk.png" },
+    { "id": "2", "nombre": "Joseph King", "posicion": "POR", "elemento": "Fuego", "equipo": "Royal Academy", "media": 85, "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/9/w/9wtikebapts.png" },
+    { "id": "3", "nombre": "Paul Siddon", "posicion": "POR", "elemento": "Montaña", "equipo": "Zeus", "media": 83, "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/b/7/b7piycz2hdk.png" },
+    { "id": "4", "nombre": "Darren LaChance", "posicion": "POR", "elemento": "Bosque", "equipo": "Fauxshore", "media": 78, "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/o/y/oy1sibyz7wc.png" },
+
+    { "id": "5", "nombre": "Nathan Swift", "posicion": "DEF", "elemento": "Aire", "equipo": "Raimon", "media": 84, "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/9/5/95k7tlx0k0u.png" },
+    { "id": "6", "nombre": "Jack Wallside", "posicion": "DEF", "elemento": "Montaña", "equipo": "Raimon", "media": 76, "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/m/r/mrvaa0xojh8.png" },
+    { "id": "7", "nombre": "Tod Ironside", "posicion": "DEF", "elemento": "Fuego", "equipo": "Raimon", "media": 72, "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/_/y/_yjndsfyhyu.png" },
+    { "id": "8", "nombre": "Bobby Shearer", "posicion": "DEF", "elemento": "Bosque", "equipo": "Raimon", "media": 75, "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/-/x/-xzmaq-eqf8.png" },
+    { "id": "9", "nombre": "Hurley Kane", "posicion": "DEF", "elemento": "Aire", "equipo": "Mary Times", "media": 82, "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/i/0/i0spbukph8c.png" },
+    { "id": "10", "nombre": "Jim Wraith", "posicion": "DEF", "elemento": "Bosque", "equipo": "Raimon", "media": 70, "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/o/w/owsgutjimb8.png" },
+    { "id": "11", "nombre": "Archer Hawkins", "posicion": "DEF", "elemento": "Aire", "equipo": "Inazuma National", "media": 81, "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/p/7/p7cdsgjrbs0.png" },
+
+    { "id": "12", "nombre": "Jude Sharp", "posicion": "MED", "elemento": "Aire", "equipo": "Royal Academy", "media": 89, "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/l/1/l1wbplzhm4k.png" },
+    { "id": "13", "nombre": "Erik Eagle", "posicion": "MED", "elemento": "Bosque", "equipo": "Raimon", "media": 86, "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/e/4/e4qtt3lwf_m.png" },
+    { "id": "14", "nombre": "Steve Grim", "posicion": "MED", "elemento": "Aire", "equipo": "Raimon", "media": 72, "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/f/3/f3asqpwqusk.png" },
+    { "id": "15", "nombre": "Tim Saunders", "posicion": "MED", "elemento": "Bosque", "equipo": "Raimon", "media": 70, "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/u/f/ufxz9wwq5hm.png" },
+    { "id": "16", "nombre": "Byron Love", "posicion": "MED", "elemento": "Bosque", "equipo": "Zeus", "media": 90, "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/d/y/dykb3jbxeis.png" },
+    { "id": "17", "nombre": "Jordan Greenway", "posicion": "MED", "elemento": "Bosque", "equipo": "Inazuma National", "media": 83, "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/t/1/t14qrku1rke.png" },
+    { "id": "18", "nombre": "Caleb Stonewall", "posicion": "MED", "elemento": "Fuego", "equipo": "Royal Academy Redux", "media": 87, "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/s/x/sxyalpxpni8.png" },
+
+    { "id": "19", "nombre": "Axel Blaze", "posicion": "DEL", "elemento": "Fuego", "equipo": "Raimon", "media": 92, "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/f/1/f1kh7d67sbs.png" },
+    { "id": "20", "nombre": "Shawn Froste", "posicion": "DEL", "elemento": "Aire", "equipo": "Alpine", "media": 90, "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/i/g/iggcoacccik.png" },
+    { "id": "21", "nombre": "Kevin Dragonfly", "posicion": "DEL", "elemento": "Bosque", "equipo": "Raimon", "media": 82, "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/0/d/0dvmw8cb_ye.png" },
+    { "id": "22", "nombre": "Xavier Foster", "posicion": "DEL", "elemento": "Fuego", "equipo": "Inazuma National", "media": 91, "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/8/y/8yq-vg9hzzc.png" },
+    { "id": "23", "nombre": "David Samford", "posicion": "DEL", "elemento": "Bosque", "equipo": "Royal Academy", "media": 85, "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/u/d/udbgi0_9hlm.png" },
+    { "id": "24", "nombre": "William Glass", "posicion": "DEL", "elemento": "Bosque", "equipo": "Raimon", "media": 60, "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/u/y/uy2tfhpjks0.png" }
+  ],
+  "drafts": []
+}
