@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { esquemaDraft } from "../schemas/draft";
+import { useJugadores } from "../hooks/useJugadores";
 
 
 export default function FormularioDraft() {
@@ -21,8 +22,17 @@ export default function FormularioDraft() {
             delantero1: null,
             delantero2: null,
             capitan: "",
-        },
+        }
     });
+
+    const {
+        data: 
+        jugadores, 
+        isPending, 
+        isError,
+        error, 
+        refetch} = useJugadores()
+        console.log(jugadores)
 
     function onSubmit(datos){
         console.log("Draft válido:", datos);
@@ -42,7 +52,7 @@ export default function FormularioDraft() {
             </div>
 
             <div>
-                
+                <label htmlFor="entrenador">Entrenador</label>
                 <input id="entrenador" type="text" autoComplete="off" 
                     aria-invalid={!!errors.entrenador}        
                     aria-describedby={errors.entrenador ? "error-entrenador" : undefined}
@@ -52,10 +62,8 @@ export default function FormularioDraft() {
 
             <button type="submit" disabled={isSubmitting}>{isSubmitting ? "Guardando...":"Guardar Draft"}</button>
 
-
-
-
-
         </form>
     )
 }
+
+
