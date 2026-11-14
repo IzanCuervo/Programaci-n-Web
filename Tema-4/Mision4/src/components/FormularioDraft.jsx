@@ -2,12 +2,14 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { esquemaDraft } from "../schemas/draft";
 import { useJugadores } from "../hooks/useJugadores";
+import HuecoJugador from "./HuecoJugador";
 
 
 export default function FormularioDraft() {
     const{
         register,
         handleSubmit,
+        watch,
         formState: { errors, isSubmitting },
     } = useForm({
         resolver: zodResolver(esquemaDraft),
@@ -32,8 +34,19 @@ export default function FormularioDraft() {
         isError,
         error, 
         refetch} = useJugadores()
-        console.log(jugadores)
+        console.log(jugadores);
+    //watch devuelve los id de los elegidos en la plantilla final
+    const elegidos = watch(["portero", "defensa1", "defensa2", "medio1", "medio2", "delantero1", "delantero2"]);
 
+    if (isPending) return <p>Cargando...</p>
+    if (isError) return( 
+        <div>
+            <p role="alert">Error no se han podido cargar los jugadores: {error.message}</p>
+            <button onClick={() => refetch()}>Reintentar</button> {/*Damos la posibilidad de volver a cargar jugadores */}
+        </div>    
+        );
+    const candidatosCapitan = jugadores.filter((jugador) => elegidos.includes(jugador.id));
+    
     function onSubmit(datos){
         console.log("Draft válido:", datos);
     }
@@ -60,8 +73,36 @@ export default function FormularioDraft() {
                 {errors.entrenador && (<p id="error-entrenador" role="alert" className="error"> {errors.entrenador.message}</p>)}
             </div>
 
-            <button type="submit" disabled={isSubmitting}>{isSubmitting ? "Guardando...":"Guardar Draft"}</button>
+            {/*Con HuecoJugador ya construido vamos a ir pintando los Huecos donde se pintará cada personaje*/}
+            <HuecoJugador campo="portero" titulo="Portero" posicion="POR" jugadores={jugadores} register={register} error={errors.portero}/>
+            
+            <HuecoJugador campo="defensa1" titulo="Defensa 1" posicion="DEF" jugadores={jugadores} register={register} error={errors.defensa1} />
 
+            <HuecoJugador campo="defensa2" titulo="Defensa 2" posicion="DEF" jugadores={jugadores} register={register} error={errors.defensa2} />
+
+            <HuecoJugador campo="medio1" titulo="Centrocampista 1" posicion="MED" jugadores={jugadores} register={register} error={errors.medio1} />
+
+            <HuecoJugador campo="medio2" titulo="Centrocampista 2" posicion="MED" jugadores={jugadores} register={register} error={errors.medio2} />
+
+            <HuecoJugador campo="delantero1" titulo="Delantero 1" posicion="DEL" jugadores={jugadores} register={register} error={errors.delantero1} />
+
+            <HuecoJugador campo="delantero2" titulo="Delantero 2" posicion="DEL" jugadores={jugadores} register={register} error={errors.delantero2} />
+
+
+            {/*Una vez filtrados los candidatoa a capitán vamos a pintar el seleccionador de capitán y al capitán*/}
+
+            <div>
+                <label htmlFor="capitan">Capitán</label>
+                <select id="capitan" aria-invalid={!!errors.capitan} aria-describedby={errors.capitan ? "error-capitan" : undefined}
+                    {...register("capitan")}>
+
+                    <option value="">Elige capitán</option>
+                    {candidatosCapitan.map((jugador) => <option key={jugador.id} value={jugador.id}>{jugador.nombre}</option>)}
+                </select>
+                {errors.capitan && (<p id="error-capitan" role="alert" className="error"> {errors.capitan.message}</p>)}
+            </div>
+            
+            <button type="submit" disabled={isSubmitting}>{isSubmitting ? "Guardando...":"Guardar Draft"}</button>
         </form>
     )
 }

@@ -12,7 +12,7 @@ export const esquemaDraft = z
         medio2: z.string({ error: "Elige un medio" }),
         delantero1: z.string({ error: "Elige un delantero" }),
         delantero2: z.string({ error: "Elige un delantero" }),
-        capitan: z.string({ error: "Elige un capitán" }),
+        capitan: z.string({ error: "Elige un capitán" }).min(1, "Elige un capitán"),
     })
 
     .refine((datos) => datos.defensa1 !== datos.defensa2, {
