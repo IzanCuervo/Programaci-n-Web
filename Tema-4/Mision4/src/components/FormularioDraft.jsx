@@ -11,7 +11,8 @@ export default function FormularioDraft() {
         register,
         handleSubmit,
         watch,
-        formState: { errors, isSubmitting },
+        reset,
+        formState: { errors },
     } = useForm({
         resolver: zodResolver(esquemaDraft),
         defaultValues: {
@@ -35,7 +36,6 @@ export default function FormularioDraft() {
         isError,
         error, 
         refetch} = useJugadores()
-        console.log(jugadores);
     
     const creaDraft = useCrearDraft();
     //watch devuelve los id de los elegidos en la plantilla final
@@ -53,8 +53,8 @@ export default function FormularioDraft() {
     const candidatosCapitan = jugadores.filter((jugador) => elegidos.includes(jugador.id));
 
     function onSubmit(datos){
-        console.log("Draft válido:", datos);
-        creaDraft.mutate(datos)
+        //Si ha habido éxito al guardar el draft lo vaciaremos posteriormente
+        creaDraft.mutate(datos, { onSuccess: () => reset() });
     }
 
     return(
@@ -108,7 +108,9 @@ export default function FormularioDraft() {
                 {errors.capitan && (<p id="error-capitan" role="alert" className="error"> {errors.capitan.message}</p>)}
             </div>
             
-            <button type="submit" disabled={isSubmitting}>{isSubmitting ? "Guardando...":"Guardar Draft"}</button>
+            <button type="submit" disabled={creaDraft.isPending}>{creaDraft.isPending ? "Guardando...":"Guardar Draft"}</button>
+            {creaDraft.isSuccess && <p role="status">¡Draft guardado!</p>}
+            {creaDraft.isError && <p role="alert">{creaDraft.error.message}</p>}
         </form>
     )
 }
