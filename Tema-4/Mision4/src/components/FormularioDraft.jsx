@@ -3,6 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { esquemaDraft } from "../schemas/draft";
 import { useJugadores } from "../hooks/useJugadores";
 import HuecoJugador from "./HuecoJugador";
+import { useCrearDraft } from "../hooks/useCrearDraft";
 
 
 export default function FormularioDraft() {
@@ -35,9 +36,11 @@ export default function FormularioDraft() {
         error, 
         refetch} = useJugadores()
         console.log(jugadores);
+    
+    const creaDraft = useCrearDraft();
     //watch devuelve los id de los elegidos en la plantilla final
     const elegidos = watch(["portero", "defensa1", "defensa2", "medio1", "medio2", "delantero1", "delantero2"]);
-
+    
     if (isPending) return <p>Cargando...</p>
     if (isError) return( 
         <div>
@@ -45,10 +48,13 @@ export default function FormularioDraft() {
             <button onClick={() => refetch()}>Reintentar</button> {/*Damos la posibilidad de volver a cargar jugadores */}
         </div>    
         );
+
+    // Filtrado de los personajes candidatos a capitán
     const candidatosCapitan = jugadores.filter((jugador) => elegidos.includes(jugador.id));
-    
+
     function onSubmit(datos){
         console.log("Draft válido:", datos);
+        creaDraft.mutate(datos)
     }
 
     return(
