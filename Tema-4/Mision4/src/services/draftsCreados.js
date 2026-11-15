@@ -10,3 +10,11 @@ export async function guardarDrafts(draft) {
     }
     return respuesta.json();
 }
+
+export async function obtenerDrafts() {
+    const respuesta = await fetch(`${import.meta.env.VITE_API_URL}/drafts`) //Le pasamos la URL del env por si tenemos que cambiarla en un futuro no se rompa todo
+    if(!respuesta.ok){
+        throw new Error ("No se pudieron cargar los drafts guardados (error" + respuesta.status + ")");
+    }
+    return respuesta.json();
+}
