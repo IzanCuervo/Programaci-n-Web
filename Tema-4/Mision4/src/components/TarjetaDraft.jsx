@@ -12,14 +12,17 @@ export default function TarjetaDraft({draft, jugadores, abierto, onAlternar}){
                     {jugadoresSeleccionados.map((id) => {const jugador = jugadores.find((jugador) => jugador.id === id);
 
                         if (!jugador) return null;
-                        
+
                         return (
                             <li key={id}>
                                 <img src={jugador.imagen} alt={jugador.nombre} width="40"/>
-                                {jugador.nombre}
-                                {jugador.posicion}
+                                <span className="nombre">{jugador.nombre}</span>
+                                <span className="posicion">{jugador.posicion}</span>
+                                <span className={`elemento ${jugador.elemento}`}>{jugador.elemento}</span>
+                                <span className="media">{jugador.media}</span>
+
                                 {/*En caso de que el id se corresponda con el del capitán lo mostramos*/}
-                                {id === draft.capitan && "CAP"}
+                                {id === draft.capitan && <span className="capitan">CAP</span>}
                             </li>
                         )
                     })}

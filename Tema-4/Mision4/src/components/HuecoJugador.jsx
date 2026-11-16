@@ -11,7 +11,9 @@ export default function HuecoJugador({campo, titulo, posicion, jugadores, regist
                                             {/*Personaje que elige el jugador que se guarda en el campo que me sirve para registrar los personajes en su posición*/}
                                             <input type="radio" value={jugador.id} {...register(campo)}/>
                                             <img src={jugador.imagen} alt={jugador.nombre} width={"60"}/>
-                                            {jugador.nombre} ({jugador.media})
+                                            <span className="nombre">{jugador.nombre}</span>
+                                            <span className={`elemento ${jugador.elemento}`}>{jugador.elemento}</span>
+                                            <span className="media">{jugador.media}</span>
                                         </label>)}
              {/*En caso de que haya algún problema con la carga de datos*/} 
             {error && <p role="alert" className="error">{error.message}</p>}

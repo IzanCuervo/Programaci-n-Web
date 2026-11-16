@@ -2,7 +2,10 @@ import { useDrafts } from "../hooks/useDrafts"
 import { useJugadores } from "../hooks/useJugadores";
 import { useState } from "react";
 import TarjetaDraft from "./TarjetaDraft";
+
 const JUGADORES_POR_DRAFT = 7;
+const MIN_QUIMICA = 4;
+const BONUS_QUIMICA = 3;
 
 export default function ClasificacionDrafts(){
     const [abierto, setAbierto] = useState(null);
@@ -29,6 +32,12 @@ export default function ClasificacionDrafts(){
     if(isPending || cargandoJugadores) return <p role="status">Cargando drafts...</p>
     if(isError) return <p role="alert">Error no se han podido cargar los drafts: {error.message}</p>
     if(errorJugadores) return <p role="alert">No se han podido cargar los jufadores</p>
+
+    /*function calcularQuimica(draft){
+        const jugadoresSeleccionados = [draft.portero, draft.defensa1, draft.defensa2, draft.medio1, draft.medio2, draft.delantero1, draft.delantero2];
+        
+        const quimica = jugadoresSeleccionados
+    }*/
 
     function calcularMedia(draft){
         const jugadoresSeleccionados = [draft.portero, draft.defensa1, draft.defensa2, draft.medio1, draft.medio2, draft.delantero1, draft.delantero2];
