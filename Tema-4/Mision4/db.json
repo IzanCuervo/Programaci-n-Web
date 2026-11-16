@@ -215,6 +215,16 @@
       "equipo": "Raimon",
       "media": 60,
       "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/u/y/uy2tfhpjks0.png"
+    },
+
+    {
+    "id": "25",
+    "nombre": "Jugador Corrupto",
+    "posicion": "DEL",
+    "elemento": "Fuego",
+    "equipo": "Desconocido",
+    "media": "noventa",
+    "imagen": "imagen-rota"
     }
   ],
   "drafts": [
