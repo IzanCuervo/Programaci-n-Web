@@ -1,6 +1,9 @@
+import { useBorrarDraft } from "../hooks/useBorrarDraft";
+
 export default function TarjetaDraft({draft, jugadores, abierto, onAlternar}){
 
     const jugadoresSeleccionados = [draft.portero, draft.defensa1, draft.defensa2, draft.medio1, draft.medio2, draft.delantero1, draft.delantero2];
+    const borrar = useBorrarDraft();
 
     return (
         <li>
@@ -28,6 +31,9 @@ export default function TarjetaDraft({draft, jugadores, abierto, onAlternar}){
                     })}
                 </ul>
             )}
+
+            <button type="button" onClick={() => borrar.mutate(draft.id)} disabled={borrar.isPending} aria-label={`Borrar el draft ${draft.equipo}`}>{borrar.isPending ? "Borrando..." : "Borrar"}</button>
+            {borrar.isError && <p role="alert">{borrar.error.message}</p>}
         </li>
     )
 }
