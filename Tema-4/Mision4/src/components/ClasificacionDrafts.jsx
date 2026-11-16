@@ -1,8 +1,12 @@
 import { useDrafts } from "../hooks/useDrafts"
 import { useJugadores } from "../hooks/useJugadores";
+import { useState } from "react";
+import TarjetaDraft from "./TarjetaDraft";
 const JUGADORES_POR_DRAFT = 7;
 
 export default function ClasificacionDrafts(){
+    const [abierto, setAbierto] = useState(null);
+
     //Recibimos los Drafts guardados
     const { 
         data:
@@ -45,12 +49,18 @@ export default function ClasificacionDrafts(){
     }
     
     //Asignamos las medias a cada draft correspondiente y los vamos a ordenar de mayor a menor
+    //Básicamente con ...draft, nos vamos copiando los drafts de uno en uno y posriormenete añadimos un nuevo componete, la media
+    //Después ordenamos cada uno de estos en función de la media
     const clasificacion = drafts.map((draft) => ({...draft, media: calcularMedia(draft)})).sort((a, b) => b.media - a.media);
     return(
         <section className="clasificadorDrafts">
             <h2>Clasificación Drafts</h2>
-            <ol>
-                {clasificacion.map((draft) => <li key={draft.id}><button type="button" >{draft.equipo} - {draft.entrenador}  Media {draft.media.toFixed(1)}</button></li>)}
+            <ol>                               {/*Al principio era un li, como ahora queremos pintar la formación correspondiente vamos a pintar Tarjeta draft */}
+                                               {/*<li key={draft.id}><button type="button" >{draft.equipo} - {draft.entrenador}  Media {draft.media.toFixed(1)}</button></li>)}*/}
+                                               {/*abierto servirá como indicador, para saber si está abierto o cerrado y onAlternar para abrir y cerrar según tocas el botón */}
+                {clasificacion.map((draft) => <TarjetaDraft key={draft.id} draft={draft} jugadores={jugadores} abierto={abierto === draft.id} onAlternar={() => setAbierto(abierto === draft.id ? null : draft.id)} />
+            
+            )}                                 
             </ol>
         </section>
     )
