@@ -1,0 +1,159 @@
+/* Estilos generales: fuentes, colores y estructura de la página.
+   Estética basada en la web oficial del torneo online de Inazuma Eleven: Victory Road
+   (fondo de estadio, cabeceras azules con rayo, cajas blancas y etiquetas amarillas). */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;0,900;1,900&display=swap");
+
+:root {
+  /* Azules de las cabeceras y los números */
+  --azul-claro: #7dccf3;
+  --cian: #00b8ee;
+  --azul: #004db6;
+  --azul-noche: #18008f;
+  --azul-numero: #0580c0;
+  --azul-enlace: #2a91c8;
+
+  /* Amarillos, verdes y naranjas de etiquetas y botones */
+  --amarillo: #ffe900;
+  --amarillo-oscuro: #ffb800;
+  --linea-amarilla: #fde812;
+  --verde-lima: #7cff85;
+  --lima: #eaff00;
+  --rojo-boton: #ff3f3a;
+  --naranja-boton: #ffc000;
+  --naranja-texto: #e3552a;
+
+  --texto: #222;
+  --texto-suave: #6b7280;
+  --gris-claro: #eaeef1;
+  --rojo: #e8333e;
+
+  /* Colores de las posiciones, como en los juegos */
+  --por: #ff8a00;
+  --def: #1e7bff;
+  --med: #16b44a;
+  --del: #ef2b2b;
+
+  /* Colores de los elementos */
+  --fuego: #f0472c;
+  --bosque: #2fae4a;
+  --aire: #1fa7e8;
+  --montana: #b9782c;
+
+  --fuente: "Noto Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--fuente);
+  color: var(--texto);
+  background-color: #8fd8ff;
+  /* Estadio dibujado con degradados: cielo, gradas con público y césped a franjas */
+  background-image:
+    radial-gradient(ellipse at 20% 8%, rgba(255, 255, 255, 0.9), transparent 22%),
+    radial-gradient(ellipse at 75% 4%, rgba(255, 255, 255, 0.8), transparent 18%),
+    radial-gradient(circle, rgba(255, 255, 255, 0.35) 1px, transparent 1.5px),
+    linear-gradient(180deg,
+      #6cc9ff 0%, #b9e8ff 26%,
+      #2d4a7a 27%, #3e5f93 40%, #5a7aa8 46%,
+      #3f9b3a 47%, #4fb046 100%);
+  background-size: auto, auto, 9px 9px, auto;
+  background-position: 0 0, 0 0, 0 27vh, 0 0;
+  background-repeat: no-repeat, no-repeat, repeat-x, no-repeat;
+  background-attachment: fixed;
+}
+
+/* Dos columnas: el formulario con el campo a la izquierda y la clasificación a la derecha */
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 28px 16px 56px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 28px;
+  align-items: start;
+}
+
+#root > h1 {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 960px) {
+  #root {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Título con el estilo de «Available Now!»: relleno amarillo-naranja con contorno azul y blanco */
+h1 {
+  margin: 0;
+  font-style: italic;
+  font-weight: 900;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  line-height: 1;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #fff59a 0%, var(--amarillo) 40%, #ff9b00 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter:
+    drop-shadow(2px 0 0 #0a1f4d) drop-shadow(-2px 0 0 #0a1f4d)
+    drop-shadow(0 2px 0 #0a1f4d) drop-shadow(0 -2px 0 #0a1f4d)
+    drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff)
+    drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff)
+    drop-shadow(0 6px 6px rgba(0, 0, 0, 0.35));
+}
+
+/* Base de todos los botones */
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Foco visible para quien navega con el teclado */
+:focus-visible {
+  outline: 3px solid var(--azul-numero);
+  outline-offset: 3px;
+}
+
+/* Mensajes de estado (cargando, guardado): etiqueta verde-lima como «Vs. Bots» */
+[role="status"] {
+  margin: 0;
+  padding: 8px 18px;
+  font-weight: 700;
+  color: #0b3b16;
+  background: linear-gradient(60deg, var(--verde-lima), var(--lima));
+  border-radius: 40px;
+}
+
+/* Errores: texto rojo sobre fondo rojo claro, como los avisos en rojo de la web */
+[role="alert"] {
+  margin: 0;
+  padding: 8px 14px;
+  font-weight: 700;
+  color: var(--rojo);
+  background: #fff0f0;
+  border-left: 4px solid var(--rojo);
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

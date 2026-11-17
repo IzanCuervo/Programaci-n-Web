@@ -465,14 +465,14 @@
       "equipo": "Best Eleven",
       "entrenador": "Percy Travis",
       "portero": "1",
-      "defensa1": "6",
-      "defensa2": "5",
-      "medio1": "17",
+      "defensa1": "36",
+      "defensa2": "35",
+      "medio1": "43",
       "medio2": "18",
       "delantero1": "21",
-      "delantero2": "20",
-      "capitan": "1",
-      "id": "iSTY0afrk5g"
+      "delantero2": "51",
+      "capitan": "21",
+      "id": "JT5K0uBeo3A"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

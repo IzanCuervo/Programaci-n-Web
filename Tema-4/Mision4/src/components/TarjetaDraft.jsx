@@ -20,7 +20,7 @@ export default function TarjetaDraft({draft, jugadores, abierto, onAlternar}){
                             <li key={id}>
                                 <img src={jugador.imagen} alt={jugador.nombre} width="40"/>
                                 <span className="nombre">{jugador.nombre}</span>
-                                <span className="posicion">{jugador.posicion}</span>
+                                <span className={`posicion ${jugador.posicion}`}>{jugador.posicion}</span>
                                 <span className={`elemento ${jugador.elemento}`}>{jugador.elemento}</span>
                                 <span className="media">{jugador.media}</span>
 

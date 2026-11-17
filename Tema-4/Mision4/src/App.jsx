@@ -5,7 +5,7 @@ import ClasificacionDrafts from './components/ClasificacionDrafts'
 function App() {
   return(
     <>
-      <h1>Full Contact Forms</h1>
+      <h1>Inazuma Draft</h1>
       <FormularioDraft/>
       <ClasificacionDrafts/>
     </>
