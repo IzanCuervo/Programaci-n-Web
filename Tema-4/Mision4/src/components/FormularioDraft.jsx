@@ -44,7 +44,7 @@ export default function FormularioDraft() {
     //watch devuelve los id de los elegidos en la plantilla final
     const elegidos = watch(["portero", "defensa1", "defensa2", "medio1", "medio2", "delantero1", "delantero2"]);
     
-    if (isPending) return <p>Cargando...</p>
+    if (isPending) return <p role="status">Cargando...</p>
     if (isError) return( 
         <div>
             <p role="alert">Error no se han podido cargar los jugadores: {error.message}</p>
