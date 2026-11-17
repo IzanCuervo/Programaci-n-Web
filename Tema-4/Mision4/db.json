@@ -224,6 +224,240 @@
       "equipo": "Desconocido",
       "media": "noventa",
       "imagen": "imagen-rota"
+    },
+    {
+      "id": "26",
+      "nombre": "Thomas Feldt",
+      "posicion": "POR",
+      "elemento": "Bosque",
+      "equipo": "Brainwashing",
+      "media": 74,
+      "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/l/s/lsetbtpeusc.png"
+    },
+    {
+      "id": "27",
+      "nombre": "John Neville",
+      "posicion": "POR",
+      "elemento": "Fuego",
+      "equipo": "Kirkwood",
+      "media": 72,
+      "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/f/x/fxn30donyam.png"
+    },
+    {
+      "id": "28",
+      "nombre": "Morgan Sanders",
+      "posicion": "POR",
+      "elemento": "Bosque",
+      "equipo": "Shuriken",
+      "media": 70,
+      "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/t/b/tb-t5rxymcu.png"
+    },
+    {
+      "id": "29",
+      "nombre": "Nathan Jones",
+      "posicion": "POR",
+      "elemento": "Aire",
+      "equipo": "Occult",
+      "media": 66,
+      "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/v/a/vaeuza7dvs8.png"
+    },
+    {
+      "id": "30",
+      "nombre": "Peter Drent",
+      "posicion": "DEF",
+      "elemento": "Montaña",
+      "equipo": "Royal Academy",
+      "media": 76,
+      "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/d/5/d5w9zd0i6nc.png"
+    },
+    {
+      "id": "31",
+      "nombre": "Ben Simmons",
+      "posicion": "DEF",
+      "elemento": "Bosque",
+      "equipo": "Royal Academy",
+      "media": 73,
+      "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/s/r/srbc08syx-0.png"
+    },
+    {
+      "id": "32",
+      "nombre": "Apollo Light",
+      "posicion": "DEF",
+      "elemento": "Bosque",
+      "equipo": "Zeus",
+      "media": 80,
+      "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/7/u/7uk9hbs-y9u.png"
+    },
+    {
+      "id": "33",
+      "nombre": "Jeff Iron",
+      "posicion": "DEF",
+      "elemento": "Fuego",
+      "equipo": "Zeus",
+      "media": 78,
+      "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/k/8/k87cm-kefo8.png"
+    },
+    {
+      "id": "34",
+      "nombre": "Galen Thunderbird",
+      "posicion": "DEF",
+      "elemento": "Montaña",
+      "equipo": "Shuriken",
+      "media": 71,
+      "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/-/n/-nrlpqws7jm.png"
+    },
+    {
+      "id": "35",
+      "nombre": "Malcolm Night",
+      "posicion": "DEF",
+      "elemento": "Fuego",
+      "equipo": "Kirkwood",
+      "media": 69,
+      "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/_/4/_4ecna7ft68.png"
+    },
+    {
+      "id": "36",
+      "nombre": "Jim Hillfort",
+      "posicion": "DEF",
+      "elemento": "Aire",
+      "equipo": "Shuriken",
+      "media": 67,
+      "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/8/g/8gs5hzea-pm.png"
+    },
+    {
+      "id": "37",
+      "nombre": "Herman Waldon",
+      "posicion": "MED",
+      "elemento": "Aire",
+      "equipo": "Royal Academy",
+      "media": 75,
+      "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/_/3/_3uukhtskrs.png"
+    },
+    {
+      "id": "38",
+      "nombre": "John Bloom",
+      "posicion": "MED",
+      "elemento": "Fuego",
+      "equipo": "Royal Academy",
+      "media": 74,
+      "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/o/f/ofl1j41wnye.png"
+    },
+    {
+      "id": "39",
+      "nombre": "Sam Kincaid",
+      "posicion": "MED",
+      "elemento": "Fuego",
+      "equipo": "Raimon",
+      "media": 68,
+      "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/a/1/a1orm9vieek.png"
+    },
+    {
+      "id": "40",
+      "nombre": "Artie Mishman",
+      "posicion": "MED",
+      "elemento": "Aire",
+      "equipo": "Zeus",
+      "media": 79,
+      "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/z/a/zauucflacbk.png"
+    },
+    {
+      "id": "41",
+      "nombre": "Arion Matlock",
+      "posicion": "MED",
+      "elemento": "Bosque",
+      "equipo": "Zeus",
+      "media": 80,
+      "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/o/y/oyf1x6tgvom.png"
+    },
+    {
+      "id": "42",
+      "nombre": "Jupiter Jumper",
+      "posicion": "MED",
+      "elemento": "Aire",
+      "equipo": "Shuriken",
+      "media": 70,
+      "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/q/i/qi3il6ggpwu.png"
+    },
+    {
+      "id": "43",
+      "nombre": "Toby Damian",
+      "posicion": "MED",
+      "elemento": "Aire",
+      "equipo": "Kirkwood",
+      "media": 72,
+      "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/d/2/d2graechdcm.png"
+    },
+    {
+      "id": "44",
+      "nombre": "Maxwell Carson",
+      "posicion": "MED",
+      "elemento": "Aire",
+      "equipo": "Raimon",
+      "media": 69,
+      "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/r/d/rd_khczyztm.png"
+    },
+    {
+      "id": "45",
+      "nombre": "Cliff Tomlinson",
+      "posicion": "DEL",
+      "elemento": "Aire",
+      "equipo": "Royal Academy",
+      "media": 77,
+      "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/f/a/fat0cwsp5yu.png"
+    },
+    {
+      "id": "46",
+      "nombre": "Steve Ingham",
+      "posicion": "DEL",
+      "elemento": "Montaña",
+      "equipo": "Royal Academy",
+      "media": 74,
+      "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/w/8/w8g8mttrknm.png"
+    },
+    {
+      "id": "47",
+      "nombre": "Marvin Murdock",
+      "posicion": "DEL",
+      "elemento": "Fuego",
+      "equipo": "Kirkwood",
+      "media": 78,
+      "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/p/c/pcfzrjfd6jk.png"
+    },
+    {
+      "id": "48",
+      "nombre": "Thomas Murdock",
+      "posicion": "DEL",
+      "elemento": "Aire",
+      "equipo": "Kirkwood",
+      "media": 76,
+      "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/h/0/h0e-xiwkbpe.png"
+    },
+    {
+      "id": "49",
+      "nombre": "Sam Samurai",
+      "posicion": "DEL",
+      "elemento": "Bosque",
+      "equipo": "Shuriken",
+      "media": 73,
+      "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/b/k/bkgpmfg8el8.png"
+    },
+    {
+      "id": "50",
+      "nombre": "Gus Heeley",
+      "posicion": "DEL",
+      "elemento": "Montaña",
+      "equipo": "Zeus",
+      "media": 81,
+      "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/j/3/j3p0ku05xoc.png"
+    },
+    {
+      "id": "51",
+      "nombre": "Harry Snake",
+      "posicion": "DEL",
+      "elemento": "Bosque",
+      "equipo": "Wild",
+      "media": 71,
+      "imagen": "https://dxi4wb638ujep.cloudfront.net/1/k/x/j/xjpbcha4y-8.png"
     }
   ],
   "drafts": [
