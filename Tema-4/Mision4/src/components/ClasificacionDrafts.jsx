@@ -29,7 +29,7 @@ export default function ClasificacionDrafts(){
 
     if(isPending || cargandoJugadores) return <p role="status">Cargando drafts...</p>
     if(isError) return <p role="alert">Error no se han podido cargar los drafts: {error.message}</p>
-    if(errorJugadores) return <p role="alert">No se han podido cargar los jufadores</p>
+    if(errorJugadores) return <p role="alert">No se han podido cargar los jugadores</p>
 
 
     function calcularMedia(draft){
