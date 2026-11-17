@@ -4,9 +4,11 @@ import { esquemaDraft } from "../schemas/draft";
 import { useJugadores } from "../hooks/useJugadores";
 import HuecoJugador from "./HuecoJugador";
 import { useCrearDraft } from "../hooks/useCrearDraft";
+import { useState } from "react";
 
 
 export default function FormularioDraft() {
+    
     const{
         register,
         handleSubmit,
@@ -38,6 +40,7 @@ export default function FormularioDraft() {
         refetch} = useJugadores()
     
     const creaDraft = useCrearDraft();
+    const [ronda, setRonda] = useState(0);
     //watch devuelve los id de los elegidos en la plantilla final
     const elegidos = watch(["portero", "defensa1", "defensa2", "medio1", "medio2", "delantero1", "delantero2"]);
     
@@ -54,7 +57,7 @@ export default function FormularioDraft() {
 
     function onSubmit(datos){
         //Si ha habido éxito al guardar el draft lo vaciaremos posteriormente
-        creaDraft.mutate(datos, { onSuccess: () => reset() });
+        creaDraft.mutate(datos, { onSuccess: () => {reset(); setRonda((r) => r+1);} });
     }
 
     return(
@@ -80,20 +83,21 @@ export default function FormularioDraft() {
             </div>
 
             {/*Con HuecoJugador ya construido vamos a ir pintando los Huecos donde se pintará cada personaje*/}
-            <HuecoJugador campo="portero" titulo="Portero" posicion="POR" jugadores={jugadores} register={register} error={errors.portero}/>
-            
-            <HuecoJugador campo="defensa1" titulo="Defensa 1" posicion="DEF" jugadores={jugadores} register={register} error={errors.defensa1} />
+            <div key={ronda}>
+                <HuecoJugador campo="portero" titulo="Portero" posicion="POR" jugadores={jugadores} register={register} error={errors.portero}/>
+                
+                <HuecoJugador campo="defensa1" titulo="Defensa 1" posicion="DEF" jugadores={jugadores} register={register} error={errors.defensa1} />
 
-            <HuecoJugador campo="defensa2" titulo="Defensa 2" posicion="DEF" jugadores={jugadores} register={register} error={errors.defensa2} />
+                <HuecoJugador campo="defensa2" titulo="Defensa 2" posicion="DEF" jugadores={jugadores} register={register} error={errors.defensa2} />
 
-            <HuecoJugador campo="medio1" titulo="Centrocampista 1" posicion="MED" jugadores={jugadores} register={register} error={errors.medio1} />
+                <HuecoJugador campo="medio1" titulo="Centrocampista 1" posicion="MED" jugadores={jugadores} register={register} error={errors.medio1} />
 
-            <HuecoJugador campo="medio2" titulo="Centrocampista 2" posicion="MED" jugadores={jugadores} register={register} error={errors.medio2} />
+                <HuecoJugador campo="medio2" titulo="Centrocampista 2" posicion="MED" jugadores={jugadores} register={register} error={errors.medio2} />
 
-            <HuecoJugador campo="delantero1" titulo="Delantero 1" posicion="DEL" jugadores={jugadores} register={register} error={errors.delantero1} />
+                <HuecoJugador campo="delantero1" titulo="Delantero 1" posicion="DEL" jugadores={jugadores} register={register} error={errors.delantero1} />
 
-            <HuecoJugador campo="delantero2" titulo="Delantero 2" posicion="DEL" jugadores={jugadores} register={register} error={errors.delantero2} />
-
+                <HuecoJugador campo="delantero2" titulo="Delantero 2" posicion="DEL" jugadores={jugadores} register={register} error={errors.delantero2} />
+            </div>
 
             {/*Una vez filtrados los candidatoa a capitán vamos a pintar el seleccionador de capitán y al capitán*/}
 
